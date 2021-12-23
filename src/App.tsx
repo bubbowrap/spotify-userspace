@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { Container, Sidebar, Main } from 'components/Layout';
+import Homepage from 'pages/Homepage';
+import Playlists from 'pages/Playlists';
+import TopArtists from 'pages/TopArtists';
+import TopTracks from 'pages/TopTracks';
+import UserStats from 'pages/UserStats';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Sidebar />
+      <Main>
+        <Routes>
+          <Route index element={<Homepage />}></Route>
+          <Route path='top-artists' element={<TopArtists />}></Route>
+          <Route path='top-tracks' element={<TopTracks />}></Route>
+          <Route path='playlists' element={<Playlists />}></Route>
+          <Route path='user-stats' element={<UserStats />}></Route>
+        </Routes>
+      </Main>
+    </Container>
   );
 }
 
