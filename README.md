@@ -1,4 +1,15 @@
-# Getting Started with Create React App
+# Spotify User Space
+
+Project to try out the Spotify API. It shows a user's Spotify stats in a bunch of neat ways. Hand designed and styled, no CSS frameworks here!
+
+Stuff used:
+
+- React
+- Typescript
+- Styled Components
+- Chart.js
+- Spotify API
+- Netlify
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
