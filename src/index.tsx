@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GlobalStyles from 'styles/GlobalStyles';
+import { BrowserRouter } from 'react-router-dom';
 import App from 'App';
 //import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <GlobalStyles>
+  <BrowserRouter>
+    <GlobalStyles />
     <App />
-  </GlobalStyles>,
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
