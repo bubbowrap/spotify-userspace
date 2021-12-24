@@ -18,7 +18,7 @@ export const theme = {
     bold: '600',
   },
   fontSize: {
-    base: '18px',
+    base: '16px',
     sm: '13px',
     md: '20px',
     lg: '',

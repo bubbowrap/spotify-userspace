@@ -4,7 +4,7 @@ const { colors, weights, fontSize } = theme;
 
 export const UserContainer = styled.div`
   display: flex;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 2rem 2rem;
   border-bottom: thin solid ${colors.darkestGrey};
 `;
 
@@ -19,7 +19,6 @@ export const UserTextContainer = styled.div`
 
 export const Username = styled.p`
   font-size: ${fontSize.md};
-  font-weight: ${weights.bold};
   margin: 0 0 0.25rem 0;
 `;
 

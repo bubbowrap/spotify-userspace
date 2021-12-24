@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import theme from './theme';
 
-const { colors, fonts } = theme;
+const { colors, fonts, weights } = theme;
 
 const GlobalStyles = createGlobalStyle`
     html {
@@ -23,6 +23,7 @@ const GlobalStyles = createGlobalStyle`
 
     h1 {
       color: ${colors.white};
+      font-weight: ${weights.normal};
     }
 `;
 
