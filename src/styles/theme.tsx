@@ -1,6 +1,7 @@
 export const theme = {
   colors: {
     green: '#2AB859',
+    lighterGreen: '#1fdf64',
     blue: '#3379CD',
     darkBlue: '#0D112B',
     darkestBlue: '#020617',
@@ -18,10 +19,12 @@ export const theme = {
     bold: '600',
   },
   fontSize: {
+    xs: '12px',
+    sm: '14px',
     base: '16px',
-    sm: '13px',
     md: '20px',
-    lg: '',
+    lg: '32px',
+    xl: '48px',
   },
   transitions: {
     base: '0.2s ease',

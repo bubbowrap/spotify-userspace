@@ -1,11 +1,22 @@
-import { UserLoginBox } from './UserLogin.styles';
+import React from 'react';
+import { UserLoginBox, Title } from './UserLogin.styles';
+import { Button } from 'components/UI';
+import CirclesIcon from 'components/UI/CirclesIcon/CirclesIcon';
 
 const UserLogin = () => {
+  const handleClick = () => {
+    // has to redirect this way for the server stuff to work
+    window.location.href = '/login';
+  };
+
   return (
-    <UserLoginBox>
-      <h1>Spotify UserSpace</h1>
-      <a href='/login'>Login to your Spotify Account</a>
-    </UserLoginBox>
+    <React.Fragment>
+      <UserLoginBox>
+        <Title>Spotify UserSpace</Title>
+        <Button onClick={handleClick}>Connect to Spotify</Button>
+      </UserLoginBox>
+      <CirclesIcon />
+    </React.Fragment>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Container, Sidebar, Main } from 'components/Layout';
 import Homepage from 'pages/Homepage';
 import Playlists from 'pages/Playlists';
@@ -22,11 +22,14 @@ function App() {
               <Route path='top-tracks' element={<TopTracks />}></Route>
               <Route path='playlists' element={<Playlists />}></Route>
               <Route path='user-stats' element={<UserStats />}></Route>
+              <Route path='*' element={<Navigate to='/' />} />
             </Routes>
           </Main>
         </React.Fragment>
       ) : (
-        <UserLogin />
+        <React.Fragment>
+          <UserLogin />
+        </React.Fragment>
       )}
     </Container>
   );
