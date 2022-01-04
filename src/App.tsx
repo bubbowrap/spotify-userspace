@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Container, Sidebar, Main } from 'components/Layout';
 import Homepage from 'pages/Homepage';
@@ -7,13 +7,15 @@ import TopArtists from 'pages/TopArtists';
 import TopTracks from 'pages/TopTracks';
 import UserStats from 'pages/UserStats';
 import UserLogin from 'components/UserLogin/UserLogin';
-const isLoggedIn = false;
+import AuthContext from 'context/auth-context';
 
 function App() {
+  const authCtx = useContext(AuthContext);
+
   return (
     <Container>
-      {isLoggedIn ? (
-        <React.Fragment>
+      {authCtx.loggedIn ? (
+        <>
           <Sidebar />
           <Main>
             <Routes>
@@ -25,11 +27,11 @@ function App() {
               <Route path='*' element={<Navigate to='/' />} />
             </Routes>
           </Main>
-        </React.Fragment>
+        </>
       ) : (
-        <React.Fragment>
+        <>
           <UserLogin />
-        </React.Fragment>
+        </>
       )}
     </Container>
   );

@@ -6,7 +6,7 @@ const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
 const REDIRECT_URI =
   process.env.REACT_APP_SPOTIFY_REDIRECT_URI ||
-  'http://localhost:8888/callback';
+  'http://localhost:3000/callback';
 
 const express = require('express'); // Express web server framework
 const request = require('request'); // "Request" library
@@ -49,7 +49,8 @@ app.get('/login', function (req, res) {
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  const scope = 'user-read-private user-read-email';
+  const scope =
+    'user-read-private user-read-email user-follow-read user-library-read user-top-read user-read-recently-played playlist-read-collaborative playlist-read-private';
   res.redirect(
     'https://accounts.spotify.com/authorize?' +
       querystring.stringify({
@@ -152,4 +153,4 @@ app.get('*', function (req, res) {
 });
 
 console.log('Listening on 8888');
-app.listen(8888);
+app.listen(3000);
