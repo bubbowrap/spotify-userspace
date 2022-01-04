@@ -1,7 +1,7 @@
 import React from 'react';
 import { UserLoginBox, Title } from './UserLogin.styles';
 import { Button } from 'components/UI';
-import CirclesIcon from 'components/UI/CirclesIcon/CirclesIcon';
+import Noise from 'components/Layout/Background/Noise';
 
 const UserLogin = () => {
   const handleClick = () => {
@@ -15,7 +15,7 @@ const UserLogin = () => {
         <Title>Spotify UserSpace</Title>
         <Button onClick={handleClick}>Connect to Spotify</Button>
       </UserLoginBox>
-      <CirclesIcon />
+      <Noise />
     </React.Fragment>
   );
 };
