@@ -103,7 +103,7 @@ app.get('/callback', function (req, res) {
 
         // use the access token to access the Spotify Web API
         request.get(options, function (error, response, body) {
-          console.log(body);
+          // console.log(body);
         });
 
         // we can also pass the token to the browser to make requests from there
@@ -152,5 +152,5 @@ app.get('*', function (req, res) {
   res.render(path.resolve(__dirname, '../build'));
 });
 
-console.log('Listening on 8888');
+console.log('Listening on 3000');
 app.listen(3000);

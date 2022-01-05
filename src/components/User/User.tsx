@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getUser } from 'api';
+import { getUserProfile, getUserFollowing } from 'api';
 import { Loader } from 'components/UI';
 
 import {
@@ -11,19 +11,36 @@ import {
   UserCount,
 } from './User.styles';
 
-const User = () => {
-  type UserProps = {
-    display_name: string;
-    images: any;
-    followers: any;
+interface UserProps {
+  display_name: string;
+  images: any;
+  followers: any;
+}
+
+interface Following {
+  artists: {
+    [key: string]: string;
   };
+}
+
+const User = () => {
   const [user, setUser] = useState<UserProps>();
+  const [userFollowing, setUserFollowing] = useState<Following | null>();
 
   useEffect(() => {
-    getUser()
-      .then((res) => res.json())
-      .then((data) => setUser(data))
-      .catch((e) => console.log(e));
+    const fetchData = async () => {
+      const requests: any[] = [getUserProfile(), getUserFollowing()];
+
+      const [user, userFollowing]: any[] = await Promise.all(
+        requests.map((url) => url)
+      ).then(async (res) =>
+        Promise.all(res.map(async (data) => await data.json()))
+      );
+      setUser(user);
+      setUserFollowing(userFollowing);
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -34,7 +51,11 @@ const User = () => {
           <UserTextContainer>
             <Username>{user.display_name}</Username>
             <UserDetails>
-              <UserCount>{user.followers.total}</UserCount> Followers
+              <UserCount>{user.followers.total}</UserCount> Followers &bull;{' '}
+              <UserCount>
+                {userFollowing?.artists && userFollowing.artists.items.length}
+              </UserCount>{' '}
+              Following
             </UserDetails>
           </UserTextContainer>
         </>
