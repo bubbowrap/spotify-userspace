@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import theme from './theme';
 
-const { colors, fonts, weights } = theme;
+const { colors, fonts, weights, transitions } = theme;
 
 const GlobalStyles = createGlobalStyle`
     html {
@@ -24,6 +24,12 @@ const GlobalStyles = createGlobalStyle`
     h1 {
       color: ${colors.white};
       font-weight: ${weights.normal};
+    }
+
+    a {
+      color: ${colors.lightGrey};
+      transition: ${transitions.base};
+      text-decoration: none;
     }
 `;
 

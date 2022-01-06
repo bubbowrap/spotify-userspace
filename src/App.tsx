@@ -8,13 +8,15 @@ import TopTracks from 'pages/TopTracks';
 import UserStats from 'pages/UserStats';
 import UserLogin from 'components/UserLogin/UserLogin';
 import AuthContext from 'context/auth-context';
+import { Loader } from 'components/UI';
 
 function App() {
   const authCtx = useContext(AuthContext);
 
   return (
     <Container>
-      {authCtx.loggedIn ? (
+      {authCtx.loading && <Loader />}
+      {!authCtx.loading && authCtx.loggedIn && (
         <>
           <Sidebar />
           <Main>
@@ -28,11 +30,8 @@ function App() {
             </Routes>
           </Main>
         </>
-      ) : (
-        <>
-          <UserLogin />
-        </>
       )}
+      {!authCtx.loading && !authCtx.loggedIn && <UserLogin />}
     </Container>
   );
 }
