@@ -1,6 +1,6 @@
 import { getHashParams } from 'utils';
 
-const token_duration = 14400 * 1000; //3600 = 1 hour
+const token_duration = 3600 * 1000; //3600 = 1 hour
 
 const setAccessToken = (token: string) => {
   localStorage.setItem('spotify_token_time', Date.now().toString());
@@ -10,7 +10,7 @@ const setAccessToken = (token: string) => {
 const refreshToken = async () => {
   try {
     const res = await fetch(
-      `/refresh_token?refresh_token=${localStorage.getItem(
+      `http://localhost:8888/refresh_token?refresh_token=${localStorage.getItem(
         'spotify_refresh_token'
       )}`
     );

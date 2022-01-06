@@ -27,6 +27,7 @@ const Homepage = () => {
     };
 
     fetchData();
+    console.log(topTracks);
   }, []);
 
   return (

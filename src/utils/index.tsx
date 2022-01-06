@@ -10,3 +10,8 @@ export const getHashParams = () => {
   }
   return hashParams;
 };
+
+export const durationConversion = (ms: number) => {
+  const date = new Date(ms);
+  return `${date.getMinutes()}:${date.getSeconds()}`;
+};

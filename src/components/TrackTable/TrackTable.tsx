@@ -10,7 +10,9 @@ const TrackTable: React.FC<TrackList> = (props) => {
   return (
     <TrackTableContainer>
       {props ? (
-        props.tracks.map((track, i) => <TrackTableItem track={track} key={i} />)
+        props.tracks
+          .slice(0, 5)
+          .map((track, i) => <TrackTableItem track={track} key={i} />)
       ) : (
         <Loader />
       )}

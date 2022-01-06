@@ -6,7 +6,7 @@ const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
 const REDIRECT_URI =
   process.env.REACT_APP_SPOTIFY_REDIRECT_URI ||
-  'http://localhost:3000/callback';
+  'http://localhost:8888/callback';
 
 const express = require('express'); // Express web server framework
 const request = require('request'); // "Request" library
@@ -108,14 +108,18 @@ app.get('/callback', function (req, res) {
 
         // we can also pass the token to the browser to make requests from there
         res.redirect(
-          '/#' +
+          'http://localhost:3000/#' +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token,
             })
         );
       } else {
-        res.redirect(`/#${querystring.stringify({ error: 'invalid_token' })}`);
+        res.redirect(
+          `http://localhost:3000/#${querystring.stringify({
+            error: 'invalid_token',
+          })}`
+        );
       }
     });
   }
@@ -152,5 +156,5 @@ app.get('*', function (req, res) {
   res.render(path.resolve(__dirname, '../build'));
 });
 
-console.log('Listening on 3000');
-app.listen(3000);
+console.log('Listening on 8888');
+app.listen(8888);
