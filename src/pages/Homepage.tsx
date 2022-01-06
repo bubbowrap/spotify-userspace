@@ -1,13 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getUserTopTracks, getUserTopArtists } from 'api';
+import TrackTable from 'components/TrackTable/TrackTable';
 
 const Homepage = () => {
-  // type UserProps = {
-  //   display_name: string;
-  //   images: any;
-  //   followers: any;
-  // };
-  //const [userProfile, setUserProfile] = useState<UserProps>();
+  interface tracksProps {
+    items: any[];
+  }
+
+  interface artistsProps {
+    items: any[];
+  }
+  const [topTracks, setTopTracks] = useState<tracksProps>();
+  const [topArtists, setTopArtists] = useState<artistsProps>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +22,8 @@ const Homepage = () => {
       ).then(async (res) =>
         Promise.all(res.map(async (data) => await data.json()))
       );
-      console.log(getTopTracks, getTopArtists);
+      setTopArtists(getTopArtists);
+      setTopTracks(getTopTracks);
     };
 
     fetchData();
@@ -26,8 +31,9 @@ const Homepage = () => {
 
   return (
     <div>
-      <h1>Your Top Artists</h1>
-      <div></div>
+      <h2>Your Top Artists</h2>
+      <h2>Your Top Tracks</h2>
+      {topTracks && <TrackTable tracks={topTracks.items} />}
     </div>
   );
 };
