@@ -19,7 +19,6 @@ interface Props {
 }
 
 const PlaylistItem: React.FC<Props> = (props) => {
-  console.log(props);
   return (
     <PlaylistBox
       href={props.playlist.external_urls.spotify}

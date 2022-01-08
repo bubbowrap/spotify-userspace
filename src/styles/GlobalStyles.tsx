@@ -12,6 +12,10 @@ const GlobalStyles = createGlobalStyle`
       margin: 0;
       color: ${colors.white};
       font-family: ${fonts.primary};
+
+      & * {
+        letter-spacing: .5px;
+      }
     }
 
     *,
@@ -27,7 +31,7 @@ const GlobalStyles = createGlobalStyle`
 
     a {
       color: ${colors.lightGrey};
-      transition: ${transitions.base};
+      transition: color ${transitions.base};
       text-decoration: none;
     }
 `;

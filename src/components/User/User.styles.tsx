@@ -5,7 +5,6 @@ const { colors, weights, fontSize } = theme;
 export const UserContainer = styled.div`
   display: flex;
   padding: 2rem 1rem;
-  border-bottom: thin solid ${colors.darkestGrey};
   align-items: center;
 `;
 

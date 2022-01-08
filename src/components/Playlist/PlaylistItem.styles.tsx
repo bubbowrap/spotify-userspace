@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-const { colors, fontSize } = theme;
+const { colors, fontSize, transitions } = theme;
 
 export const PlaylistBox = styled.a`
   padding: 0.75rem;
@@ -9,9 +9,14 @@ export const PlaylistBox = styled.a`
   flex: 1 0 33%;
   max-width: 175px;
   min-width: 100px;
+  transition: background ${transitions.base};
 
   &:hover {
     background: rgba(255, 255, 255, 0.05);
+
+    img {
+      opacity: 1;
+    }
   }
 `;
 
@@ -20,7 +25,8 @@ export const Image = styled.img`
   border-radius: 5px;
   margin-bottom: 0.5rem;
   object-fit: cover;
-  object-position: ;
+  opacity: 0.85;
+  transition: opacity ${transitions.base};
 `;
 
 export const PlaylistTitle = styled.strong`
