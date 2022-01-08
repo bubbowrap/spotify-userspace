@@ -5,10 +5,8 @@ import Styled from './Sidebar.styles';
 const Sidebar = () => {
   return (
     <Styled>
-      <div>
-        <User />
-        <Navigation />
-      </div>
+      <User />
+      <Navigation />
     </Styled>
   );
 };

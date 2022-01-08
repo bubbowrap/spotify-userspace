@@ -31,11 +31,11 @@ const User = () => {
     const fetchData = async () => {
       const requests: any[] = [getUserProfile(), getUserFollowing()];
 
+      const res = await Promise.all(requests.map((url) => url));
       const [user, userFollowing]: any[] = await Promise.all(
-        requests.map((url) => url)
-      ).then(async (res) =>
-        Promise.all(res.map(async (data) => await data.json()))
+        res.map((data) => data.json())
       );
+
       setUser(user);
       setUserFollowing(userFollowing);
     };

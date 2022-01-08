@@ -4,7 +4,7 @@ const { colors, weights, fontSize } = theme;
 
 export const UserContainer = styled.div`
   display: flex;
-  padding: 2rem 1rem 2rem 2rem;
+  padding: 2rem 1rem;
   border-bottom: thin solid ${colors.darkestGrey};
   align-items: center;
 `;
@@ -14,7 +14,7 @@ export const Image = styled.img`
   height: 55px;
   object-fit: cover;
   object-position: 50% 50%;
-  border-radius: 100%;
+  border-radius: 5px;
 `;
 
 export const UserTextContainer = styled.div`

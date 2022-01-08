@@ -2,11 +2,7 @@ import React from 'react';
 import Styled from './Main.styles';
 
 const Main = (props: { children: React.ReactNode }) => {
-  return (
-    <Styled>
-      <main>{props.children}</main>
-    </Styled>
-  );
+  return <Styled>{props.children}</Styled>;
 };
 
 export default Main;
