@@ -5,6 +5,7 @@ import {
   AlbumImage,
   TrackName,
   LinkItem,
+  TrackDuration,
 } from './TrackTableItem.styles';
 
 interface Props {
@@ -41,11 +42,12 @@ const TrackTableItem: React.FC<Props> = (props) => {
           {props.track.name}
         </TrackName>
         {props.track.artists
-          .map<React.ReactNode>((artist) => (
+          .map<React.ReactNode>((artist, i) => (
             <LinkItem
               href={artist.external_urls.spotify}
               target='_blank'
               rel='noopener noreferrer'
+              key={i}
             >
               {artist.name}
             </LinkItem>
@@ -59,7 +61,9 @@ const TrackTableItem: React.FC<Props> = (props) => {
       >
         {props.track.album.name}
       </LinkItem>
-      {durationConversion(props.track.duration_ms)}
+      <TrackDuration>
+        {durationConversion(props.track.duration_ms)}
+      </TrackDuration>
     </TrackTableRow>
   );
 };

@@ -5,7 +5,6 @@ const { colors, fonts, weights, transitions } = theme;
 
 const GlobalStyles = createGlobalStyle`
     html {
-        box-sizing: border-box;
         background: ${colors.darkBlue};
     }
 
@@ -18,7 +17,7 @@ const GlobalStyles = createGlobalStyle`
     *,
     *:before,
     *:after {
-      box-sizing: inherit;
+      box-sizing: border-box;
     }
 
     h1 {

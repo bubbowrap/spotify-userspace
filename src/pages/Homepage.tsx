@@ -1,41 +1,60 @@
 import { useEffect, useState } from 'react';
-import { getUserTopTracks, getUserTopArtists } from 'api';
+import { Link } from 'react-router-dom';
+import { getUserTopTracks, getUserTopArtists, getUserPlaylists } from 'api';
 import TrackTable from 'components/TrackTable/TrackTable';
+import PlaylistGrid from 'components/Playlist/PlaylistGrid';
+import { Section, Row, SectionHeader } from 'components/Layout';
 
 const Homepage = () => {
-  interface tracksProps {
+  interface apiProps {
     items: any[];
   }
 
-  interface artistsProps {
-    items: any[];
-  }
-  const [topTracks, setTopTracks] = useState<tracksProps>();
-  const [topArtists, setTopArtists] = useState<artistsProps>();
+  const [topTracks, setTopTracks] = useState<apiProps>();
+  const [topArtists, setTopArtists] = useState<apiProps>();
+  const [playlists, setPlaylists] = useState<apiProps>();
 
   useEffect(() => {
     const fetchData = async () => {
-      const requests: any[] = [getUserTopTracks(), getUserTopArtists()];
+      const requests: any[] = [
+        getUserTopTracks(),
+        getUserTopArtists(),
+        getUserPlaylists(),
+      ];
 
-      const [getTopTracks, getTopArtists]: any[] = await Promise.all(
-        requests.map((url) => url)
-      ).then(async (res) =>
-        Promise.all(res.map(async (data) => await data.json()))
-      );
+      const res = await Promise.all(requests.map((url) => url));
+      const [getTopTracks, getTopArtists, getPlaylists]: any[] =
+        await Promise.all(res.map((data) => data.json()));
+
       setTopArtists(getTopArtists);
       setTopTracks(getTopTracks);
+      setPlaylists(getPlaylists);
     };
 
     fetchData();
-    console.log(topTracks);
   }, []);
-
   return (
-    <div>
-      <h2>Your Top Artists</h2>
-      <h2>Your Top Tracks</h2>
-      {topTracks && <TrackTable tracks={topTracks.items} />}
-    </div>
+    <>
+      <Section>
+        <h2>Your Top Artists</h2>
+      </Section>
+      <Row>
+        <Section>
+          <SectionHeader>
+            <h2>Your Top Tracks</h2>
+            <Link to='/top-tracks'>See More</Link>
+          </SectionHeader>
+          {topTracks && <TrackTable tracks={topTracks.items} limit={5} />}
+        </Section>
+        <Section>
+          <SectionHeader>
+            <h2>Your Top PlayLists</h2>
+            <Link to='/playlists'>See More</Link>
+          </SectionHeader>
+          {playlists && <PlaylistGrid playlists={playlists.items} limit={6} />}
+        </Section>
+      </Row>
+    </>
   );
 };
 

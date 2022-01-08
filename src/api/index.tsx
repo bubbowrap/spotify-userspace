@@ -2,6 +2,9 @@ import { getHashParams } from 'utils';
 
 const token_duration = 3600 * 1000; //3600 = 1 hour
 
+const getSpotifyRefreshToken = () =>
+  localStorage.getItem('spotify_refresh_token');
+
 const setAccessToken = (token: string) => {
   localStorage.setItem('spotify_token_time', Date.now().toString());
   localStorage.setItem('spotify_access_token', token);
@@ -10,12 +13,12 @@ const setAccessToken = (token: string) => {
 const refreshToken = async () => {
   try {
     const res = await fetch(
-      `http://localhost:8888/refresh_token?refresh_token=${localStorage.getItem(
-        'spotify_refresh_token'
-      )}`
+      `http://localhost:8888/refresh_token?refresh_token=${getSpotifyRefreshToken()}`
     );
     const { access_token } = await res.json();
+    console.log(access_token);
     setAccessToken(access_token);
+    window.location.reload();
     return;
   } catch (e) {
     console.error(e);
@@ -32,12 +35,12 @@ export const getToken = () => {
   const spotifyTokenTime: any = () =>
     localStorage.getItem('spotify_token_time');
 
-  const accessToken = localStorage.getItem('spotify_access_token');
-
-  if (Date.now() - Number(spotifyTokenTime) > token_duration) {
+  if (Date.now() - spotifyTokenTime() > token_duration) {
     console.warn('Refreshing Token');
     refreshToken();
   }
+
+  const accessToken = localStorage.getItem('spotify_access_token');
 
   if ((!accessToken || accessToken === 'undefined') && access_token) {
     localStorage.setItem('spotify_access_token', access_token);
@@ -78,6 +81,12 @@ export const getUserTopTracks = () =>
 
 export const getUserTopArtists = () =>
   fetch(`${BASE_SPOTIFY_URL}/me/top/artists`, {
+    method: 'GET',
+    headers: DEFAULT_HEADERS,
+  });
+
+export const getUserPlaylists = () =>
+  fetch(`${BASE_SPOTIFY_URL}/me/playlists`, {
     method: 'GET',
     headers: DEFAULT_HEADERS,
   });
