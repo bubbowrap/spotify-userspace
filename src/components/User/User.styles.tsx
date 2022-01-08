@@ -14,7 +14,7 @@ export const Image = styled.img`
   height: 55px;
   object-fit: cover;
   object-position: 50% 50%;
-  border-radius: 100%;
+  border-radius: 5px;
 `;
 
 export const UserTextContainer = styled.div`
