@@ -20,6 +20,10 @@ export const TrackTableRow = styled.div`
     a {
       color: ${colors.white};
     }
+
+    img {
+      opacity: 1;
+    }
   }
 `;
 
@@ -29,6 +33,8 @@ export const AlbumImage = styled.img`
   object-fit: cover;
   object-position: 50% 50%;
   border-radius: 5px;
+  opacity: 0.85;
+  transition: opacity ${transitions.base};
 `;
 
 export const TrackName = styled.a`

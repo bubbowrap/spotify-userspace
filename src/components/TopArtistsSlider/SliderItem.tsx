@@ -1,5 +1,6 @@
 import {
   ItemContainer,
+  ItemLink,
   Image,
   ArtistName,
   ArtistFollowers,
@@ -20,16 +21,18 @@ interface ArtistProps {
 
 const SliderItem: React.FC<ArtistProps> = (props) => {
   return (
-    <ItemContainer
-      href={props.artist.external_urls.spotify}
-      target='_blank'
-      rel='noopener noreferrer'
-    >
-      <Image src={props.artist.images[0].url} alt={props.artist.name} />
-      <ArtistName>{props.artist.name}</ArtistName>
-      <ArtistFollowers>
-        {props.artist.followers.total.toLocaleString()} Followers
-      </ArtistFollowers>
+    <ItemContainer>
+      <ItemLink
+        href={props.artist.external_urls.spotify}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        <Image src={props.artist.images[0].url} alt={props.artist.name} />
+        <ArtistName>{props.artist.name}</ArtistName>
+        <ArtistFollowers>
+          {props.artist.followers.total.toLocaleString()} Followers
+        </ArtistFollowers>
+      </ItemLink>
     </ItemContainer>
   );
 };

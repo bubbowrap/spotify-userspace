@@ -2,12 +2,26 @@ import { useEffect, useState } from 'react';
 import { getArtistsById } from 'api';
 import { Loader } from 'components/UI';
 import SliderItem from './SliderItem';
-import { SliderContainer, SliderTrack } from './TopArtistsSlider.styles';
+import Flickity from 'react-flickity-component';
+import 'assets/css/flickity.css';
+
+import styled from 'styled-components';
+
+export const SliderContainer = styled.div`
+  margin-right: -2rem;
+`;
 
 interface artistProps {
   artists: any[];
   limit?: number;
 }
+
+const options = {
+  freeScroll: true,
+  contain: true,
+  pageDots: false,
+  bgLazyLoad: true,
+};
 
 const TopArtistsSlider: React.FC<artistProps> = (props) => {
   const [currArtists, setCurrArtists] = useState([]);
@@ -26,19 +40,22 @@ const TopArtistsSlider: React.FC<artistProps> = (props) => {
 
     fetchArtists();
   }, [props.artists, props.limit]);
-  console.log(currArtists);
 
   return (
     <SliderContainer>
-      <SliderTrack>
-        {currArtists ? (
-          currArtists.map((artist: any, i: number) => (
+      {currArtists ? (
+        <Flickity
+          reloadOnUpdate={true}
+          options={options}
+          disableImagesLoaded={false}
+        >
+          {currArtists.map((artist: any, i: number) => (
             <SliderItem artist={artist} key={i} />
-          ))
-        ) : (
-          <Loader />
-        )}
-      </SliderTrack>
+          ))}
+        </Flickity>
+      ) : (
+        <Loader />
+      )}
     </SliderContainer>
   );
 };

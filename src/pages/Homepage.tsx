@@ -56,12 +56,14 @@ const Homepage = () => {
           </SectionHeader>
           {topTracks && <TrackTable tracks={topTracks.items} limit={5} />}
         </Section>
+      </Row>
+      <Row>
         <Section>
           <SectionHeader>
             <h2>Your Top PlayLists</h2>
             <Link to='/playlists'>See More</Link>
           </SectionHeader>
-          {playlists && <PlaylistGrid playlists={playlists.items} limit={6} />}
+          {playlists && <PlaylistGrid playlists={playlists.items} limit={5} />}
         </Section>
       </Row>
     </>

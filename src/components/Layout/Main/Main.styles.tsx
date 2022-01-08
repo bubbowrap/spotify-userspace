@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const Styled = styled.main`
-  flex: 0 1 auto;
+  display: grid;
+  grid-row-gap: 2.5rem;
   padding: 2rem;
 `;
 

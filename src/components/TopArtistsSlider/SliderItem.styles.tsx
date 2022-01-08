@@ -3,12 +3,18 @@ import theme from 'styles/theme';
 
 const { colors, fontSize, transitions } = theme;
 
-export const ItemContainer = styled.a`
+export const ItemContainer = styled.div`
   display: block;
-  transition: all ${transitions.base};
+`;
 
+export const ItemLink = styled.a`
+  display: block;
+  margin-right: 1.5rem;
   &:hover,
   &:focus {
+    img {
+      opacity: 1;
+    }
   }
 `;
 
@@ -17,14 +23,20 @@ export const Image = styled.img`
   object-fit: cover;
   object-position: 50% 25%;
   aspect-ratio: 5/3;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-bottom: 1rem;
+  max-height: 300px;
+  height: auto;
+  box-shadow: 0 10px 20px -5px rgba(42, 184, 89, 0.1);
+  opacity: 0.8;
+  transition: opacity ${transitions.base};
 `;
 
 export const ArtistName = styled.strong`
   color: ${colors.white};
   font-size: ${fontSize.md};
   display: block;
+  margin-bottom: 0.25rem;
 `;
 
 export const ArtistFollowers = styled.span`

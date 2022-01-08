@@ -7,7 +7,6 @@ const { colors, fontSize } = theme;
 const ContainerStyles = styled.div`
   min-height: 100vh;
   display: flex;
-  overflow-x: hidden;
 `;
 
 const RowStyles = styled.div`
@@ -27,6 +26,8 @@ const SectionHeaderStyles = styled.header`
 
   a {
     font-size: ${fontSize.sm};
+    text-transform: uppercase;
+    font-weight: bolder;
 
     &:hover {
       color: ${colors.white};
