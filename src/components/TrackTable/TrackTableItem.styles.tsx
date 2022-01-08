@@ -10,7 +10,7 @@ export const TrackTableRow = styled.div`
   align-items: center;
   padding: 1rem;
   border-radius: 5px;
-  transition: ${transitions.base};
+  transition: all ${transitions.base};
   color: ${colors.lightGrey};
 
   &:hover,
@@ -37,7 +37,7 @@ export const TrackName = styled.a`
   font-size: ${fontSize.base};
   font-weight: ${weights.bold};
   margin-bottom: 0.25rem;
-  transition: ${transitions.base};
+  transition: all ${transitions.base};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -53,7 +53,7 @@ export const TrackName = styled.a`
 
 export const LinkItem = styled.a`
   font-size: ${fontSize.sm};
-  transition: ${transitions.base};
+  transition: all ${transitions.base};
   &:hover,
   &:focus {
     color: ${colors.white};

@@ -1,6 +1,6 @@
 import { getHashParams } from 'utils';
 
-const token_duration = 3600 * 1000; //3600 = 1 hour
+const token_duration = 3500 * 1000; //3600 = 1 hour
 
 const getSpotifyRefreshToken = () =>
   localStorage.getItem('spotify_refresh_token');
@@ -87,6 +87,12 @@ export const getUserTopArtists = () =>
 
 export const getUserPlaylists = () =>
   fetch(`${BASE_SPOTIFY_URL}/me/playlists`, {
+    method: 'GET',
+    headers: DEFAULT_HEADERS,
+  });
+
+export const getArtistsById = (ids: string) =>
+  fetch(`${BASE_SPOTIFY_URL}/artists?ids=${ids}`, {
     method: 'GET',
     headers: DEFAULT_HEADERS,
   });

@@ -1,30 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
+import theme from 'styles/theme';
+
+const { colors, fontSize } = theme;
 
 const ContainerStyles = styled.div`
   min-height: 100vh;
   display: flex;
+  overflow-x: hidden;
 `;
 
 const RowStyles = styled.div`
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 100%));
+  grid-gap: 2rem;
   justify-content: space-between;
 `;
 
-const SectionStyles = styled.section`
-  flex-basis: 50%;
-  max-width: 50%;
-  margin-right: 2rem;
-
-  &:last-child {
-    margin-right: 0;
-  }
-`;
+const SectionStyles = styled.section``;
 
 const SectionHeaderStyles = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  a {
+    font-size: ${fontSize.sm};
+
+    &:hover {
+      color: ${colors.white};
+      text-decoration: underline;
+    }
+  }
 `;
 
 export const Container = (props: { children: React.ReactNode }) => {

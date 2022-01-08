@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getUserTopTracks, getUserTopArtists, getUserPlaylists } from 'api';
 import TrackTable from 'components/TrackTable/TrackTable';
 import PlaylistGrid from 'components/Playlist/PlaylistGrid';
+import TopArtistsSlider from 'components/TopArtistsSlider/TopArtistsSlider';
 import { Section, Row, SectionHeader } from 'components/Layout';
 
 const Homepage = () => {
@@ -33,11 +34,20 @@ const Homepage = () => {
 
     fetchData();
   }, []);
+
   return (
     <>
-      <Section>
-        <h2>Your Top Artists</h2>
-      </Section>
+      <Row>
+        <Section>
+          <SectionHeader>
+            <h2>Your Top Artists</h2>
+            <Link to='/top-artists'>See More</Link>
+          </SectionHeader>
+          {topArtists && (
+            <TopArtistsSlider artists={topArtists.items} limit={5} />
+          )}
+        </Section>
+      </Row>
       <Row>
         <Section>
           <SectionHeader>

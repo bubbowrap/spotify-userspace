@@ -27,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
 
     a {
       color: ${colors.lightGrey};
-      transition: ${transitions.base};
+      transition: all ${transitions.base};
       text-decoration: none;
     }
 `;
