@@ -3,12 +3,15 @@ import styled, { css } from 'styled-components';
 import theme from 'styles/theme';
 const { colors, weights, fontSize, transitions } = theme;
 
-const Button: React.FC<{
+interface ButtonProps {
   icon?: string;
+  title?: string;
   modifier?: string;
   children?: React.ReactNode;
   onClick?: ReactEventHandler;
-}> = (props) => {
+}
+
+const Button: React.FC<ButtonProps> = (props) => {
   const ButtonStyle = styled.button`
     border-radius: 2rem;
     border: none;
@@ -27,6 +30,24 @@ const Button: React.FC<{
       transform: scale(1.025);
     }
 
+    ${props.modifier === 'icon' &&
+    css`
+      background: ${colors.darkestBlue};
+      color: ${colors.lightGrey};
+      padding: 0;
+      width: 48px;
+      height: 48px;
+
+      &:hover {
+        color: ${colors.white};
+        background: ${colors.darkestBlue};
+      }
+
+      i {
+        margin: 0;
+      }
+    `}
+
     ${props.modifier === 'outline' &&
     css`
       padding: 1rem 3rem;
@@ -43,10 +64,10 @@ const Button: React.FC<{
   `;
 
   const Icon = styled.i`
-    margin-right: 1.5rem;
+    margin-left: 1.5rem;
   `;
   return (
-    <ButtonStyle onClick={props.onClick}>
+    <ButtonStyle onClick={props.onClick} title={props.title}>
       {props.children}
       {props.icon && <Icon className='material-icons'>{props.icon}</Icon>}
     </ButtonStyle>

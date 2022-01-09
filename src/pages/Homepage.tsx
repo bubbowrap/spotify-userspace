@@ -5,11 +5,15 @@ import TrackTable from 'components/TrackTable/TrackTable';
 import PlaylistGrid from 'components/Playlist/PlaylistGrid';
 import TopArtistsSlider from 'components/TopArtistsSlider/TopArtistsSlider';
 import { Section, Row, SectionHeader } from 'components/Layout';
+import { Loader } from 'components/UI';
+import Topbar from 'components/Layout/Topbar/Topbar';
+
+interface apiProps {
+  items: any[];
+}
 
 const Homepage = () => {
-  interface apiProps {
-    items: any[];
-  }
+  const [isError, setIsError] = useState(false);
 
   const [topTracks, setTopTracks] = useState<apiProps>();
   const [topArtists, setTopArtists] = useState<apiProps>();
@@ -17,19 +21,23 @@ const Homepage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const requests: any[] = [
-        getUserTopTracks(),
-        getUserTopArtists(),
-        getUserPlaylists(),
-      ];
+      try {
+        const requests: any[] = [
+          getUserTopTracks(),
+          getUserTopArtists(),
+          getUserPlaylists(),
+        ];
 
-      const res = await Promise.all(requests.map((url) => url));
-      const [getTopTracks, getTopArtists, getPlaylists]: any[] =
-        await Promise.all(res.map((data) => data.json()));
+        const res = await Promise.all(requests.map((url) => url));
+        const [getTopTracks, getTopArtists, getPlaylists]: any[] =
+          await Promise.all(res.map((data) => data.json()));
 
-      setTopArtists(getTopArtists);
-      setTopTracks(getTopTracks);
-      setPlaylists(getPlaylists);
+        setTopArtists(getTopArtists);
+        setTopTracks(getTopTracks);
+        setPlaylists(getPlaylists);
+      } catch (error) {
+        setIsError(true);
+      }
     };
 
     fetchData();
@@ -37,35 +45,49 @@ const Homepage = () => {
 
   return (
     <>
-      <Row>
-        <Section>
-          <SectionHeader>
-            <h2>Your Top Artists</h2>
-            <Link to='/top-artists'>See More</Link>
-          </SectionHeader>
-          {topArtists && (
-            <TopArtistsSlider artists={topArtists.items} limit={5} />
-          )}
-        </Section>
-      </Row>
-      <Row>
-        <Section>
-          <SectionHeader>
-            <h2>Your Top Tracks</h2>
-            <Link to='/top-tracks'>See More</Link>
-          </SectionHeader>
-          {topTracks && <TrackTable tracks={topTracks.items} limit={5} />}
-        </Section>
-      </Row>
-      <Row>
-        <Section>
-          <SectionHeader>
-            <h2>Your Top PlayLists</h2>
-            <Link to='/playlists'>See More</Link>
-          </SectionHeader>
-          {playlists && <PlaylistGrid playlists={playlists.items} limit={5} />}
-        </Section>
-      </Row>
+      {isError && <p>Something went wrong.</p>}
+      <>
+        <Topbar>Spotify Overview</Topbar>
+        <Row>
+          <Section>
+            <SectionHeader>
+              <h2>Your Top Artists</h2>
+              <Link to='/top-artists'>See More</Link>
+            </SectionHeader>
+            {topArtists ? (
+              <TopArtistsSlider artists={topArtists.items} limit={5} />
+            ) : (
+              <Loader />
+            )}
+          </Section>
+        </Row>
+        <Row>
+          <Section>
+            <SectionHeader>
+              <h2>Your Top Tracks</h2>
+              <Link to='/top-tracks'>See More</Link>
+            </SectionHeader>
+            {topTracks ? (
+              <TrackTable tracks={topTracks.items} limit={5} />
+            ) : (
+              <Loader />
+            )}
+          </Section>
+        </Row>
+        <Row>
+          <Section>
+            <SectionHeader>
+              <h2>Your Top PlayLists</h2>
+              <Link to='/playlists'>See More</Link>
+            </SectionHeader>
+            {playlists ? (
+              <PlaylistGrid playlists={playlists.items} limit={5} />
+            ) : (
+              <Loader />
+            )}
+          </Section>
+        </Row>
+      </>
     </>
   );
 };

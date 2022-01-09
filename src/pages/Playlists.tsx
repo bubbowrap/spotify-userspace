@@ -1,8 +1,10 @@
+import Topbar from 'components/Layout/Topbar/Topbar';
+
 const Playlists = () => {
   return (
-    <div>
-      <h1>Your Playlists</h1>
-    </div>
+    <>
+      <Topbar>Playlists</Topbar>
+    </>
   );
 };
 
