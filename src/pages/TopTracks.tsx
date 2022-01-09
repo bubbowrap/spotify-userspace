@@ -1,8 +1,10 @@
+import Topbar from 'components/Layout/Topbar/Topbar';
+
 const TopTracks = () => {
   return (
-    <div>
-      <h1>Your Top Tracks</h1>
-    </div>
+    <>
+      <Topbar>Top Tracks</Topbar>
+    </>
   );
 };
 

@@ -1,8 +1,10 @@
+import Topbar from 'components/Layout/Topbar/Topbar';
+
 const TopArtists = () => {
   return (
-    <div>
-      <h1>Your Top Artists</h1>
-    </div>
+    <>
+      <Topbar>Top Artists</Topbar>
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import theme from 'styles/theme';
 const { colors } = theme;
 
 const Styled = styled.div`
-  flex: 1 0 auto;
+  flex: 1 0 300px;
   max-width: 300px;
   background: ${colors.darkestBlue};
   height: 100vh;
