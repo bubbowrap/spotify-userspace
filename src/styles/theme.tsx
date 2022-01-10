@@ -16,7 +16,8 @@ export const theme = {
   },
   weights: {
     normal: '400',
-    bold: '600',
+    bold: '500',
+    bolder: '600',
   },
   fontSize: {
     xs: '12px',

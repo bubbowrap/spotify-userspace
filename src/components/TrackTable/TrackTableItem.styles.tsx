@@ -2,9 +2,15 @@ import styled from 'styled-components';
 import theme from 'styles/theme';
 const { colors, fontSize, weights, transitions } = theme;
 
-export const TrackTableRow = styled.div`
+interface TableParams {
+  rank?: Boolean;
+}
+
+export const TrackTableRow = styled.div<TableParams>`
   display: grid;
-  grid-template-columns: min-content 40% minmax(min-content, 1fr) min-content;
+  grid-template-columns:
+    ${(props) => props.rank && 'minmax(0, 20px)'} min-content 40% 1fr
+    min-content;
   column-gap: 1.5rem;
   grid-auto-flow: column dense;
   align-items: center;
@@ -37,6 +43,10 @@ export const AlbumImage = styled.img`
   transition: opacity ${transitions.base};
 `;
 
+export const TrackRank = styled.div`
+  flex-basis: 20px;
+`;
+
 export const TrackName = styled.a`
   display: block;
   color: ${colors.white};
@@ -56,10 +66,22 @@ export const TrackName = styled.a`
     text-decoration: underline;
   }
 `;
-
-export const LinkItem = styled.a`
+export const ArtistLink = styled.a`
   font-size: ${fontSize.sm};
   transition: all ${transitions.base};
+`;
+
+export const AlbumLink = styled.a`
+  display: block;
+  font-size: ${fontSize.sm};
+  transition: all ${transitions.base};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  width: fit-content;
+  padding-left: 10%;
+
   &:hover,
   &:focus {
     color: ${colors.white};

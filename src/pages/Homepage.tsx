@@ -4,9 +4,8 @@ import { getUserTopTracks, getUserTopArtists, getUserPlaylists } from 'api';
 import TrackTable from 'components/TrackTable/TrackTable';
 import PlaylistGrid from 'components/Playlist/PlaylistGrid';
 import TopArtistsSlider from 'components/TopArtistsSlider/TopArtistsSlider';
-import { Section, Row, SectionHeader } from 'components/Layout';
+import { Topbar, Section, Row, SectionHeader } from 'components/Layout';
 import { Loader } from 'components/UI';
-import Topbar from 'components/Layout/Topbar/Topbar';
 
 interface apiProps {
   items: any[];
@@ -23,9 +22,9 @@ const Homepage = () => {
     const fetchData = async () => {
       try {
         const requests: any[] = [
-          getUserTopTracks(),
-          getUserTopArtists(),
-          getUserPlaylists(),
+          getUserTopTracks(5),
+          getUserTopArtists(10),
+          getUserPlaylists(8),
         ];
 
         const res = await Promise.all(requests.map((url) => url));
@@ -55,7 +54,7 @@ const Homepage = () => {
               <Link to='/top-artists'>See More</Link>
             </SectionHeader>
             {topArtists ? (
-              <TopArtistsSlider artists={topArtists.items} limit={5} />
+              <TopArtistsSlider artists={topArtists.items} />
             ) : (
               <Loader />
             )}
@@ -67,11 +66,7 @@ const Homepage = () => {
               <h2>Your Top Tracks</h2>
               <Link to='/top-tracks'>See More</Link>
             </SectionHeader>
-            {topTracks ? (
-              <TrackTable tracks={topTracks.items} limit={5} />
-            ) : (
-              <Loader />
-            )}
+            {topTracks ? <TrackTable tracks={topTracks.items} /> : <Loader />}
           </Section>
         </Row>
         <Row>
@@ -81,7 +76,7 @@ const Homepage = () => {
               <Link to='/playlists'>See More</Link>
             </SectionHeader>
             {playlists ? (
-              <PlaylistGrid playlists={playlists.items} limit={5} />
+              <PlaylistGrid playlists={playlists.items} />
             ) : (
               <Loader />
             )}

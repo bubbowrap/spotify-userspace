@@ -24,9 +24,11 @@ const GlobalStyles = createGlobalStyle`
       box-sizing: border-box;
     }
 
-    h1 {
+    h1,
+    h2,
+    h3 {
       color: ${colors.white};
-      font-weight: ${weights.normal};
+      font-weight: ${weights.bold};
     }
 
     a {
