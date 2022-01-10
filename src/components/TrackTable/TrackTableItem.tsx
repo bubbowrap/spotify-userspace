@@ -2,9 +2,11 @@ import { durationConversion } from 'utils';
 
 import {
   TrackTableRow,
+  TrackRank,
   AlbumImage,
   TrackName,
-  LinkItem,
+  ArtistLink,
+  AlbumLink,
   TrackDuration,
 } from './TrackTableItem.styles';
 
@@ -24,11 +26,13 @@ interface Props {
       spotify: string;
     };
   };
+  index?: number;
 }
 
 const TrackTableItem: React.FC<Props> = (props) => {
   return (
-    <TrackTableRow>
+    <TrackTableRow rank={Boolean(props.index)}>
+      {props.index && <TrackRank>{props.index}</TrackRank>}
       <AlbumImage
         src={props.track.album.images[2].url}
         alt={`${props.track.album.name} Album Artwork`}
@@ -43,24 +47,24 @@ const TrackTableItem: React.FC<Props> = (props) => {
         </TrackName>
         {props.track.artists
           .map<React.ReactNode>((artist, i) => (
-            <LinkItem
+            <ArtistLink
               href={artist.external_urls.spotify}
               target='_blank'
               rel='noopener noreferrer'
               key={i}
             >
               {artist.name}
-            </LinkItem>
+            </ArtistLink>
           ))
           .reduce((prev, curr) => [prev, ', ', curr])}
       </div>
-      <LinkItem
+      <AlbumLink
         href={props.track.album.external_urls.spotify}
         target='_blank'
         rel='noopener noreferrer'
       >
         {props.track.album.name}
-      </LinkItem>
+      </AlbumLink>
       <TrackDuration>
         {durationConversion(props.track.duration_ms)}
       </TrackDuration>

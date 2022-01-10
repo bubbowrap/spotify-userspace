@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-const { colors, fontSize, transitions } = theme;
+const { colors, weights, fontSize, transitions } = theme;
 
 export const ItemContainer = styled.div`
   display: block;
@@ -35,6 +35,7 @@ export const Image = styled.img`
 export const ArtistName = styled.strong`
   color: ${colors.white};
   font-size: ${fontSize.md};
+  font-weight: ${weights.bold};
   display: block;
   margin-bottom: 0.25rem;
 `;

@@ -73,20 +73,20 @@ export const getUserFollowing = () =>
     headers: DEFAULT_HEADERS,
   });
 
-export const getUserTopTracks = () =>
-  fetch(`${BASE_SPOTIFY_URL}/me/top/tracks`, {
+export const getUserTopTracks = (limit?: number) =>
+  fetch(`${BASE_SPOTIFY_URL}/me/top/tracks${limit && `?limit=${limit}`}`, {
     method: 'GET',
     headers: DEFAULT_HEADERS,
   });
 
-export const getUserTopArtists = () =>
-  fetch(`${BASE_SPOTIFY_URL}/me/top/artists`, {
+export const getUserTopArtists = (limit?: number) =>
+  fetch(`${BASE_SPOTIFY_URL}/me/top/artists${limit && `?limit=${limit}`}`, {
     method: 'GET',
     headers: DEFAULT_HEADERS,
   });
 
-export const getUserPlaylists = () =>
-  fetch(`${BASE_SPOTIFY_URL}/me/playlists`, {
+export const getUserPlaylists = (limit?: number) =>
+  fetch(`${BASE_SPOTIFY_URL}/me/playlists${limit && `?limit=${limit}`}`, {
     method: 'GET',
     headers: DEFAULT_HEADERS,
   });

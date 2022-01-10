@@ -27,10 +27,7 @@ const TopArtistsSlider: React.FC<artistProps> = (props) => {
   const [currArtists, setCurrArtists] = useState([]);
 
   useEffect(() => {
-    const ids = props.artists
-      .slice(0, props.limit)
-      .map((artist: any) => artist.id)
-      .join('%2C');
+    const ids = props.artists.map((artist: any) => artist.id).join('%2C');
 
     const fetchArtists = async () => {
       try {
@@ -44,7 +41,7 @@ const TopArtistsSlider: React.FC<artistProps> = (props) => {
     };
 
     fetchArtists();
-  }, [props.artists, props.limit]);
+  }, [props.artists]);
 
   return (
     <SliderContainer>

@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-const { colors, fontSize, transitions } = theme;
+const { colors, weights, fontSize, transitions } = theme;
 
 export const PlaylistBox = styled.a`
   padding: 0.75rem;
   border-radius: 5px;
-  flex: 1 0 33%;
-  max-width: 175px;
-  min-width: 100px;
+  flex: 0 0 25%;
+  min-width: 150px;
   transition: background ${transitions.base};
 
   &:hover {
@@ -32,6 +31,7 @@ export const Image = styled.img`
 export const PlaylistTitle = styled.strong`
   max-width: 100%;
   color: ${colors.white};
+  font-weight: ${weights.bold};
   display: block;
   margin-bottom: 0.25rem;
 `;
