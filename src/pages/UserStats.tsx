@@ -50,7 +50,7 @@ const UserStats = () => {
             <Section>
               {topArtists ? (
                 <>
-                  <h2 style={{ textAlign: 'center' }}>Your Top Genres</h2>
+                  <h2 style={{ textAlign: 'center' }}>Your Top Ten Genres</h2>
                   <TopGenreChart chartArray={topGenresArray()} />
                 </>
               ) : (
