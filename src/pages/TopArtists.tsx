@@ -2,20 +2,22 @@ import { useEffect, useState } from 'react';
 import { Topbar, Row, Section } from 'components/Layout';
 import { getUserTopArtists } from 'api';
 import { Loader } from 'components/UI';
-interface Artists {}
+interface ArtistsProps {
+  items: any[];
+}
 
 const TopArtists = () => {
   const [isError, setIsError] = useState(false);
-  const [topArtists, setTopArtists] = useState<Artists>();
+  const [topArtists, setTopArtists] = useState<ArtistsProps>();
 
   useEffect(() => {
     const fetchTopArtists = async () => {
       try {
         const res = await getUserTopArtists();
         const data = await res.json();
-        const { artists } = data;
+        const { items } = data;
 
-        setTopArtists(artists);
+        setTopArtists(items);
       } catch (error) {
         setIsError(true);
       }
