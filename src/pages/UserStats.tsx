@@ -128,9 +128,10 @@ const UserStats = () => {
             </Section>
           </Row>
           <Row>
-            <div>Song with the highest danceability:</div>
+            <div>Your most danceable song:</div>
             <div>Your happiest song:</div>
             <div>Your saddest song:</div>
+            <div>Your chillest song:</div>
             <div>Your most popular song:</div>
             <div>Your least popular song:</div>
           </Row>
