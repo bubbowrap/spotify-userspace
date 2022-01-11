@@ -9,12 +9,12 @@ interface TableParams {
 export const TrackTableRow = styled.div<TableParams>`
   display: grid;
   grid-template-columns:
-    ${(props) => props.rank && 'minmax(0, 20px)'} min-content 40% 1fr
+    ${(props) => props.rank && 'minmax(0, 1.5rem)'} min-content 40% 1fr
     min-content;
   column-gap: 1.5rem;
   grid-auto-flow: column dense;
   align-items: center;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 5px;
   transition: all ${transitions.base};
   color: ${colors.lightGrey};
@@ -44,7 +44,7 @@ export const AlbumImage = styled.img`
 `;
 
 export const TrackRank = styled.div`
-  flex-basis: 20px;
+  text-align: right;
 `;
 
 export const TrackName = styled.a`
