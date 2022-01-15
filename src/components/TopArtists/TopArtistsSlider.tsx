@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getArtistsById } from 'api';
-import SliderItem from './SliderItem';
+import ArtistItem from './ArtistItem';
 import Flickity from 'react-flickity-component';
 import 'assets/css/flickity.css';
 import styled from 'styled-components';
@@ -50,7 +50,7 @@ const TopArtistsSlider: React.FC<artistProps> = ({ artists }) => {
         disableImagesLoaded={false}
       >
         {currArtists.map((artist: any, i: number) => (
-          <SliderItem artist={artist} key={i} />
+          <ArtistItem artist={artist} imgSize='large' key={i} />
         ))}
       </Flickity>
     </SliderContainer>

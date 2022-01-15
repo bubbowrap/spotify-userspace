@@ -67,6 +67,12 @@ export const getUserProfile = () =>
     headers: DEFAULT_HEADERS,
   });
 
+export const getCurrentlyPlaying = () =>
+  fetch(`${BASE_SPOTIFY_URL}/me/player/currently-playing`, {
+    method: 'GET',
+    headers: DEFAULT_HEADERS,
+  });
+
 export const getUserFollowing = () =>
   fetch(`${BASE_SPOTIFY_URL}/me/following?type=artist`, {
     method: 'GET',

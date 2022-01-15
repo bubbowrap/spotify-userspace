@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Topbar, Row } from 'components/Layout';
 import { getUserTopArtists, getUserTopTracks } from 'api';
 import { TopGenreChart, TopDecadesChart } from 'components/Charts';
-import AudioFeatures from 'components/AudioFeature/AudioFeatures';
+import AudioFeatures from 'components/AudioFeatures/AudioFeatures';
 import { Loader } from 'components/UI';
 
 import styled from 'styled-components';
@@ -103,73 +103,60 @@ const UserStats = () => {
           </Row>
           <Row>
             <StatsSection>
-              <StatsTitle>Song Breakdown</StatsTitle>
-              <StatsBox>
-                {topArtists ? (
-                  <AudioFeatureContainer>
-                    <h3>Most Danceable</h3>
-                    <AudioFeatures
-                      tracks={topTracks}
-                      feature='danceability'
-                      order='highest'
-                    />
-                  </AudioFeatureContainer>
-                ) : (
-                  <Loader />
-                )}
-                {topArtists ? (
-                  <AudioFeatureContainer>
-                    <h3>Happiest</h3>
-                    <AudioFeatures
-                      tracks={topTracks}
-                      feature='valence'
-                      order='highest'
-                    />
-                  </AudioFeatureContainer>
-                ) : (
-                  <Loader />
-                )}
-                {topArtists ? (
-                  <AudioFeatureContainer>
-                    <h3>Saddest</h3>
-                    <AudioFeatures tracks={topTracks} feature='valence' />
-                  </AudioFeatureContainer>
-                ) : (
-                  <Loader />
-                )}
-                {topArtists ? (
-                  <AudioFeatureContainer>
-                    <h3>Longest</h3>
-                    <AudioFeatures
-                      tracks={topTracks}
-                      feature='duration_ms'
-                      order='highest'
-                    />
-                  </AudioFeatureContainer>
-                ) : (
-                  <Loader />
-                )}{' '}
-                {topArtists ? (
-                  <AudioFeatureContainer>
-                    <h3>Highest Energy</h3>
-                    <AudioFeatures
-                      tracks={topTracks}
-                      feature='energy'
-                      order='highest'
-                    />
-                  </AudioFeatureContainer>
-                ) : (
-                  <Loader />
-                )}
-                {topArtists ? (
-                  <AudioFeatureContainer>
-                    <h3>Chillest</h3>
-                    <AudioFeatures tracks={topTracks} feature='energy' />
-                  </AudioFeatureContainer>
-                ) : (
-                  <Loader />
-                )}
-              </StatsBox>
+              {topArtists ? (
+                <>
+                  <StatsTitle>Song Breakdown</StatsTitle>
+                  <StatsBox>
+                    <AudioFeatureContainer>
+                      <h3>Most Danceable</h3>
+                      <AudioFeatures
+                        tracks={topTracks}
+                        feature='danceability'
+                        order='highest'
+                      />
+                    </AudioFeatureContainer>
+
+                    <AudioFeatureContainer>
+                      <h3>Happiest</h3>
+                      <AudioFeatures
+                        tracks={topTracks}
+                        feature='valence'
+                        order='highest'
+                      />
+                    </AudioFeatureContainer>
+
+                    <AudioFeatureContainer>
+                      <h3>Saddest</h3>
+                      <AudioFeatures tracks={topTracks} feature='valence' />
+                    </AudioFeatureContainer>
+
+                    <AudioFeatureContainer>
+                      <h3>Longest</h3>
+                      <AudioFeatures
+                        tracks={topTracks}
+                        feature='duration_ms'
+                        order='highest'
+                      />
+                    </AudioFeatureContainer>
+
+                    <AudioFeatureContainer>
+                      <h3>Highest Energy</h3>
+                      <AudioFeatures
+                        tracks={topTracks}
+                        feature='energy'
+                        order='highest'
+                      />
+                    </AudioFeatureContainer>
+
+                    <AudioFeatureContainer>
+                      <h3>Chillest</h3>
+                      <AudioFeatures tracks={topTracks} feature='energy' />
+                    </AudioFeatureContainer>
+                  </StatsBox>
+                </>
+              ) : (
+                <Loader />
+              )}
             </StatsSection>
           </Row>
         </>

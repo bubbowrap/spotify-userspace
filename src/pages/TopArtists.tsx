@@ -1,19 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Topbar, Row, Section } from 'components/Layout';
 import { getUserTopArtists } from 'api';
+import TopArtistsGrid from 'components/TopArtists/TopArtistGrid';
 import { Loader } from 'components/UI';
-interface ArtistsProps {
-  items: any[];
-}
 
 const TopArtists = () => {
   const [isError, setIsError] = useState(false);
-  const [topArtists, setTopArtists] = useState<ArtistsProps>();
+  const [topArtists, setTopArtists] = useState<any[]>();
 
   useEffect(() => {
     const fetchTopArtists = async () => {
       try {
-        const res = await getUserTopArtists();
+        const res = await getUserTopArtists(50);
         const data = await res.json();
         const { items } = data;
 
@@ -34,7 +32,13 @@ const TopArtists = () => {
       ) : (
         <>
           <Row>
-            <Section>{topArtists ? <div></div> : <Loader />}</Section>
+            <Section>
+              {topArtists ? (
+                <TopArtistsGrid artists={topArtists} />
+              ) : (
+                <Loader />
+              )}
+            </Section>
           </Row>
         </>
       )}

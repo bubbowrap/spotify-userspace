@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getUserTopTracks, getUserTopArtists, getUserPlaylists } from 'api';
 import TrackTable from 'components/TrackTable/TrackTable';
 import PlaylistGrid from 'components/Playlist/PlaylistGrid';
-import TopArtistsSlider from 'components/TopArtistsSlider/TopArtistsSlider';
+import TopArtistsSlider from 'components/TopArtists/TopArtistsSlider';
 import { Topbar, Section, Row, SectionHeader } from 'components/Layout';
 import { Loader } from 'components/UI';
 
