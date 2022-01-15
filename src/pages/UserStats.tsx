@@ -31,40 +31,6 @@ const UserStats = () => {
     fetchData();
   }, []);
 
-  // make array for top genres
-  const topGenresArray = () => {
-    const genreObject = topArtists
-      ?.flatMap((artist: any) =>
-        artist.genres.flatMap((genre: string) => genre)
-      )
-      .reduce((prev: any, curr: any) => {
-        prev[curr] = (prev[curr] || 0) + 1;
-        return prev;
-      }, {});
-    let genreArray = [];
-    for (let genre in genreObject) {
-      genreArray.push([genre, genreObject[genre]]);
-    }
-    return genreArray.sort((a, b) => b[1] - a[1]).slice(0, 10);
-  };
-
-  // make array for top decades
-  const topDecadesArray = () => {
-    const yearObject = topTracks
-      ?.flatMap((track: any) => track.album.release_date.slice(0, 4))
-      .map((year) => year.slice(0, 3))
-      .reduce((prev: any, curr: any) => {
-        prev[curr] = (prev[curr] || 0) + 1;
-        return prev;
-      }, {});
-    let yearArray = [];
-    for (let year in yearObject) {
-      yearArray.push([`${year}0s`, yearObject[year]]);
-    }
-
-    return yearArray.sort((a, b) => a[1] - b[1]);
-  };
-
   return (
     <>
       <Topbar>Stats for Nerds</Topbar>
@@ -77,7 +43,7 @@ const UserStats = () => {
               {topArtists ? (
                 <>
                   <h2 style={{ textAlign: 'center' }}>Your Top Ten Genres</h2>
-                  <TopGenreChart chartArray={topGenresArray()} />
+                  <TopGenreChart data={topArtists} />
                 </>
               ) : (
                 <Loader />
@@ -89,33 +55,17 @@ const UserStats = () => {
               {topTracks ? (
                 <>
                   <h2 style={{ textAlign: 'center' }}>Your Top Decades</h2>
-                  <TopDecadesChart chartArray={topDecadesArray()} />
+                  <TopDecadesChart data={topTracks} />
                 </>
               ) : (
                 <Loader />
               )}
             </Section>
-            <Section>
-              <Row>
-                <Section>
-                  {topTracks ? (
-                    <>
-                      <h2 style={{ textAlign: 'center' }}>
-                        Average Song Length
-                      </h2>
-                      5 minutes
-                    </>
-                  ) : (
-                    <Loader />
-                  )}
-                </Section>
-              </Row>
-            </Section>
           </Row>
-          <Row>
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             {topArtists ? (
-              <div>
-                Your most danceable song:
+              <div style={{ flex: '0 0 33.3%' }}>
+                <h3>Most Danceable Song</h3>
                 <AudioFeatures
                   tracks={topTracks}
                   feature='danceability'
@@ -125,12 +75,59 @@ const UserStats = () => {
             ) : (
               <Loader />
             )}
-            <div>Your happiest song:</div>
-            <div>Your saddest song:</div>
-            <div>Your chillest song:</div>
-            <div>Your most popular song:</div>
-            <div>Your least popular song:</div>
-          </Row>
+            {topArtists ? (
+              <div style={{ flex: '0 0 33.3%' }}>
+                <h3>Happiest Song</h3>
+                <AudioFeatures
+                  tracks={topTracks}
+                  feature='valence'
+                  order='highest'
+                />
+              </div>
+            ) : (
+              <Loader />
+            )}
+            {topArtists ? (
+              <div style={{ flex: '0 0 33.3%' }}>
+                <h3>Saddest Song</h3>
+                <AudioFeatures tracks={topTracks} feature='valence' />
+              </div>
+            ) : (
+              <Loader />
+            )}
+            {topArtists ? (
+              <div style={{ flex: '0 0 33.3%' }}>
+                <h3>Longest Song</h3>
+                <AudioFeatures
+                  tracks={topTracks}
+                  feature='duration_ms'
+                  order='highest'
+                />
+              </div>
+            ) : (
+              <Loader />
+            )}{' '}
+            {topArtists ? (
+              <div style={{ flex: '0 0 33.3%' }}>
+                <h3>Highest Energy Song</h3>
+                <AudioFeatures
+                  tracks={topTracks}
+                  feature='energy'
+                  order='highest'
+                />
+              </div>
+            ) : (
+              <Loader />
+            )}
+            {topArtists ? (
+              <div style={{ flex: '0 0 33.3%' }}>
+                <h3>Chillest Song</h3>
+                <AudioFeatures tracks={topTracks} feature='energy' />
+              </div>
+            ) : (
+              <Loader />
+            )}
+          </div>
         </>
       )}
     </>
