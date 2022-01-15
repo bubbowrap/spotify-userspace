@@ -36,7 +36,7 @@ const NowPlaying = () => {
       const res = await getCurrentlyPlaying();
       const data = await res.json();
       const { item, currently_playing_type } = data;
-      console.log(data);
+
       setPlayingType(currently_playing_type);
       setPlayingTrack((prevItem) =>
         playingType === 'track' && prevItem !== item ? item : prevItem
@@ -56,7 +56,6 @@ const NowPlaying = () => {
 
   return (
     <div style={{ margin: '1.5rem' }}>
-      {!playingTrack && 'Ad Playing'}
       {isError && `Something went wrong. -- ${isError}`}
       {playingTrack && (
         <>
@@ -68,7 +67,7 @@ const NowPlaying = () => {
             <a
               href={playingTrack.album.external_urls.spotify}
               target='_blank'
-              rel='noopener'
+              rel='noopener noreferrer'
             >
               <AlbumImage
                 src={playingTrack.album.images[2].url}
