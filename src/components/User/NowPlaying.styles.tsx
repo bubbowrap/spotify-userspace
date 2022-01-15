@@ -51,4 +51,10 @@ export const TrackName = styled.a`
 export const ArtistLink = styled.a`
   font-size: ${fontSize.sm};
   transition: all ${transitions.base};
+
+  &:hover,
+  &:focus {
+    color: ${colors.white};
+    text-decoration: underline;
+  }
 `;

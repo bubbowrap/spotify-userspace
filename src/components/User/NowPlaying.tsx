@@ -65,10 +65,16 @@ const NowPlaying = () => {
             <h4>Currently Playing</h4>
           </NowPlayingHeader>
           <NowPlayingContainer>
-            <AlbumImage
-              src={playingTrack.album.images[2].url}
-              alt={`${playingTrack.album.name} Album Artwork`}
-            />
+            <a
+              href={playingTrack.album.external_urls.spotify}
+              target='_blank'
+              rel='noopener'
+            >
+              <AlbumImage
+                src={playingTrack.album.images[2].url}
+                alt={`${playingTrack.album.name} Album Artwork`}
+              />
+            </a>
             <div style={{ overflow: 'hidden' }}>
               <TrackName
                 href={playingTrack.external_urls.spotify}
