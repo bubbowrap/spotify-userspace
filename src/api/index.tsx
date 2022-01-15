@@ -96,3 +96,15 @@ export const getArtistsById = (ids: string) =>
     method: 'GET',
     headers: DEFAULT_HEADERS,
   });
+
+export const getTrackById = (id: string) =>
+  fetch(`${BASE_SPOTIFY_URL}/tracks/${id}`, {
+    method: 'GET',
+    headers: DEFAULT_HEADERS,
+  });
+
+export const getAudioFeatures = (ids: string) =>
+  fetch(`${BASE_SPOTIFY_URL}/audio-features?ids=${ids}`, {
+    method: 'GET',
+    headers: DEFAULT_HEADERS,
+  });

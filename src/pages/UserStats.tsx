@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Topbar, Row, Section } from 'components/Layout';
 import { getUserTopArtists, getUserTopTracks } from 'api';
 import { TopGenreChart, TopDecadesChart } from 'components/Charts';
+import AudioFeatures from 'components/AudioFeature/AudioFeatures';
 import { Loader } from 'components/UI';
 
 const UserStats = () => {
@@ -64,8 +65,6 @@ const UserStats = () => {
     return yearArray.sort((a, b) => a[1] - b[1]);
   };
 
-  console.log(topDecadesArray());
-
   return (
     <>
       <Topbar>Stats for Nerds</Topbar>
@@ -111,24 +110,21 @@ const UserStats = () => {
                   )}
                 </Section>
               </Row>
-              <Row>
-                <Section>
-                  {topTracks ? (
-                    <>
-                      <h2 style={{ textAlign: 'center' }}>
-                        You Typically Listen In:
-                      </h2>
-                      The morning
-                    </>
-                  ) : (
-                    <Loader />
-                  )}
-                </Section>
-              </Row>
             </Section>
           </Row>
           <Row>
-            <div>Your most danceable song:</div>
+            {topArtists ? (
+              <div>
+                Your most danceable song:
+                <AudioFeatures
+                  tracks={topTracks}
+                  feature='danceability'
+                  order='highest'
+                />
+              </div>
+            ) : (
+              <Loader />
+            )}
             <div>Your happiest song:</div>
             <div>Your saddest song:</div>
             <div>Your chillest song:</div>

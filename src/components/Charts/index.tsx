@@ -26,14 +26,14 @@ interface chartArr {
   chartArray: any[];
 }
 
-export const TopGenreChart: React.FC<chartArr> = (props) => {
+export const TopGenreChart: React.FC<chartArr> = ({ chartArray }) => {
   return (
     <Bar
       data={{
-        labels: props.chartArray.map((genre: any) => genre[0]),
+        labels: chartArray.map((genre: any) => genre[0]),
         datasets: [
           {
-            data: props.chartArray.map((genre: any) => genre[1]),
+            data: chartArray.map((genre: any) => genre[1]),
             backgroundColor: `${colors.green}`,
           },
         ],
@@ -72,21 +72,21 @@ export const TopGenreChart: React.FC<chartArr> = (props) => {
   );
 };
 
-export const TopDecadesChart: React.FC<chartArr> = (props) => {
+export const TopDecadesChart: React.FC<chartArr> = ({ chartArray }) => {
   let pieColorsArray: any[] = [];
-  props.chartArray.forEach((decade, index) =>
+  chartArray.forEach((decade, index) =>
     pieColorsArray.push(
-      `rgba(42, 184, 89, ${(index + 1) * (100 / props.chartArray.length)}%)`
+      `rgba(42, 184, 89, ${(index + 1) * (100 / chartArray.length)}%)`
     )
   );
 
   return (
     <Doughnut
       data={{
-        labels: props.chartArray.map((year: any) => year[0]),
+        labels: chartArray.map((year: any) => year[0]),
         datasets: [
           {
-            data: props.chartArray.map((year: any) => year[1] * 2),
+            data: chartArray.map((year: any) => year[1] * 2),
             backgroundColor: pieColorsArray,
             borderWidth: 0,
           },

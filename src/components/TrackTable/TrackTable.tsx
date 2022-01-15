@@ -6,12 +6,12 @@ interface TableParams {
   rank?: Boolean;
 }
 
-const TrackTable: React.FC<TableParams> = (props) => {
+const TrackTable: React.FC<TableParams> = ({ tracks, rank }) => {
   return (
     <TrackTableContainer>
-      {props.tracks &&
-        props.tracks.map((track, i) => (
-          <TrackTableItem track={track} index={props.rank && i + 1} key={i} />
+      {tracks &&
+        tracks.map((track, i) => (
+          <TrackTableItem track={track} index={rank && i + 1} key={i} />
         ))}
     </TrackTableContainer>
   );

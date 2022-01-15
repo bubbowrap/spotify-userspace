@@ -5,10 +5,10 @@ interface PlaylistParams {
   playlists: any[];
 }
 
-const PlaylistGrid: React.FC<PlaylistParams> = (props) => {
+const PlaylistGrid: React.FC<PlaylistParams> = ({ playlists }) => {
   return (
     <PlaylistContainer>
-      {props.playlists.map((playlist, i) => (
+      {playlists.map((playlist, i) => (
         <PlaylistItem playlist={playlist} key={i} />
       ))}
     </PlaylistContainer>

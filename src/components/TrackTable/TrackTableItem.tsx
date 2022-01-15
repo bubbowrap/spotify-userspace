@@ -29,23 +29,23 @@ interface Props {
   index?: number;
 }
 
-const TrackTableItem: React.FC<Props> = (props) => {
+const TrackTableItem: React.FC<Props> = ({ track, index }) => {
   return (
-    <TrackTableRow rank={Boolean(props.index)}>
-      {props.index && <TrackRank>{props.index}</TrackRank>}
+    <TrackTableRow rank={Boolean(index)}>
+      {index && <TrackRank>{index}</TrackRank>}
       <AlbumImage
-        src={props.track.album.images[2].url}
-        alt={`${props.track.album.name} Album Artwork`}
+        src={track.album.images[2].url}
+        alt={`${track.album.name} Album Artwork`}
       />
       <div>
         <TrackName
-          href={props.track.external_urls.spotify}
+          href={track.external_urls.spotify}
           target='_blank'
           rel='noopener noreferrer'
         >
-          {props.track.name}
+          {track.name}
         </TrackName>
-        {props.track.artists
+        {track.artists
           .map<React.ReactNode>((artist, i) => (
             <ArtistLink
               href={artist.external_urls.spotify}
@@ -59,15 +59,13 @@ const TrackTableItem: React.FC<Props> = (props) => {
           .reduce((prev, curr) => [prev, ', ', curr])}
       </div>
       <AlbumLink
-        href={props.track.album.external_urls.spotify}
+        href={track.album.external_urls.spotify}
         target='_blank'
         rel='noopener noreferrer'
       >
-        {props.track.album.name}
+        {track.album.name}
       </AlbumLink>
-      <TrackDuration>
-        {durationConversion(props.track.duration_ms)}
-      </TrackDuration>
+      <TrackDuration>{durationConversion(track.duration_ms)}</TrackDuration>
     </TrackTableRow>
   );
 };

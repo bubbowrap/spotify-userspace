@@ -9,16 +9,22 @@ interface ButtonProps {
   onClick?: ReactEventHandler;
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
+const Button: React.FC<ButtonProps> = ({
+  icon,
+  modifier,
+  title,
+  children,
+  onClick,
+}) => {
   return (
     <ButtonStyle
-      onClick={props.onClick}
-      icon={props.icon}
-      modifier={props.modifier}
-      title={props.title}
+      onClick={onClick}
+      icon={icon}
+      modifier={modifier}
+      title={title}
     >
-      {props.children}
-      {props.icon && <Icon className='material-icons'>{props.icon}</Icon>}
+      {children}
+      {icon && <Icon className='material-icons'>{icon}</Icon>}
     </ButtonStyle>
   );
 };

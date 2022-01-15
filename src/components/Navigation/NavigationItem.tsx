@@ -2,12 +2,12 @@ import React from 'react';
 import { ListItem, StyledLink, Icon, Title } from './NavigationItem.styles';
 
 const NavigationItem: React.FC<{ icon?: string; text?: string; link: string }> =
-  (props) => {
+  ({ link, icon, text }) => {
     return (
       <ListItem>
-        <StyledLink to={props.link}>
-          {props.icon && <Icon className='material-icons'>{props.icon}</Icon>}
-          <Title>{props.text}</Title>
+        <StyledLink to={link}>
+          {icon && <Icon className='material-icons'>{icon}</Icon>}
+          <Title>{text}</Title>
         </StyledLink>
       </ListItem>
     );
