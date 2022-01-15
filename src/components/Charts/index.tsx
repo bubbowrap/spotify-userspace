@@ -129,7 +129,13 @@ export const TopDecadesChart: React.FC<chartArr> = ({ data }) => {
       options={{
         responsive: true,
         plugins: {
-          legend: {},
+          legend: {
+            labels: {
+              color: `${colors.lightGrey}`,
+              padding: 30,
+            },
+            position: 'bottom',
+          },
         },
       }}
     />

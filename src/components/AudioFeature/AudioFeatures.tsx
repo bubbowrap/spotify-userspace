@@ -3,6 +3,7 @@ import { getAudioFeatures, getTrackById } from 'api';
 import {
   FeatureContainer,
   Image,
+  TrackInfo,
   TrackName,
   TrackArtist,
 } from './AudioFeatures.styles';
@@ -88,13 +89,15 @@ const AudioFeatures: React.FC<artistProps> = ({ tracks, order, feature }) => {
       {isError && 'Something went wrong.'}
       {track && (
         <FeatureContainer href={track.external_urls.spotify}>
-          <Image src={track.album.images[1].url} alt={track.album.name} />
-          <TrackName>{track.name}</TrackName>
-          {track.artists
-            .map<React.ReactNode>((artist, i) => (
-              <TrackArtist key={i}>{artist.name}</TrackArtist>
-            ))
-            .reduce((prev, curr) => [prev, ', ', curr])}
+          <Image src={track.album.images[2].url} alt={track.album.name} />
+          <TrackInfo>
+            <TrackName>{track.name}</TrackName>
+            {track.artists
+              .map<React.ReactNode>((artist, i) => (
+                <TrackArtist key={i}>{artist.name}</TrackArtist>
+              ))
+              .reduce((prev, curr) => [prev, ', ', curr])}
+          </TrackInfo>
         </FeatureContainer>
       )}
     </>

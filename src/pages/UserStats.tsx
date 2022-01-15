@@ -1,10 +1,45 @@
 import { useEffect, useState } from 'react';
-import { Topbar, Row, Section } from 'components/Layout';
+import { Topbar, Row } from 'components/Layout';
 import { getUserTopArtists, getUserTopTracks } from 'api';
 import { TopGenreChart, TopDecadesChart } from 'components/Charts';
 import AudioFeatures from 'components/AudioFeature/AudioFeatures';
 import { Loader } from 'components/UI';
 
+import styled from 'styled-components';
+
+const StatsSection = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > *:first-child {
+    margin-right: 2rem;
+  }
+`;
+
+const StatsTitle = styled.h2`
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1;
+  flex: 40%;
+`;
+
+const StatsBox = styled.div`
+  flex: 60%;
+`;
+
+const AudioFeatureContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > *:first-child {
+    margin-right: 0.75rem;
+    flex: 0 0 25%;
+  }
+
+  & > *:last-child {
+    flex-basis: 100%;
+  }
+`;
 const UserStats = () => {
   const [isError, setIsError] = useState(false);
 
@@ -39,95 +74,104 @@ const UserStats = () => {
       ) : (
         <>
           <Row>
-            <Section>
+            <StatsSection>
               {topArtists ? (
                 <>
-                  <h2 style={{ textAlign: 'center' }}>Your Top Ten Genres</h2>
-                  <TopGenreChart data={topArtists} />
+                  <StatsTitle>Your Top 10 Genres</StatsTitle>
+                  <StatsBox style={{ flexBasis: '75%' }}>
+                    <TopGenreChart data={topArtists} />
+                  </StatsBox>
                 </>
               ) : (
                 <Loader />
               )}
-            </Section>
+            </StatsSection>
           </Row>
           <Row>
-            <Section>
+            <StatsSection>
               {topTracks ? (
                 <>
-                  <h2 style={{ textAlign: 'center' }}>Your Top Decades</h2>
-                  <TopDecadesChart data={topTracks} />
+                  <StatsBox style={{ flexBasis: '40%' }}>
+                    <TopDecadesChart data={topTracks} />
+                  </StatsBox>
+                  <StatsTitle>Your Favorite Decades</StatsTitle>
                 </>
               ) : (
                 <Loader />
               )}
-            </Section>
+            </StatsSection>
           </Row>
-          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-            {topArtists ? (
-              <div style={{ flex: '0 0 33.3%' }}>
-                <h3>Most Danceable Song</h3>
-                <AudioFeatures
-                  tracks={topTracks}
-                  feature='danceability'
-                  order='highest'
-                />
-              </div>
-            ) : (
-              <Loader />
-            )}
-            {topArtists ? (
-              <div style={{ flex: '0 0 33.3%' }}>
-                <h3>Happiest Song</h3>
-                <AudioFeatures
-                  tracks={topTracks}
-                  feature='valence'
-                  order='highest'
-                />
-              </div>
-            ) : (
-              <Loader />
-            )}
-            {topArtists ? (
-              <div style={{ flex: '0 0 33.3%' }}>
-                <h3>Saddest Song</h3>
-                <AudioFeatures tracks={topTracks} feature='valence' />
-              </div>
-            ) : (
-              <Loader />
-            )}
-            {topArtists ? (
-              <div style={{ flex: '0 0 33.3%' }}>
-                <h3>Longest Song</h3>
-                <AudioFeatures
-                  tracks={topTracks}
-                  feature='duration_ms'
-                  order='highest'
-                />
-              </div>
-            ) : (
-              <Loader />
-            )}{' '}
-            {topArtists ? (
-              <div style={{ flex: '0 0 33.3%' }}>
-                <h3>Highest Energy Song</h3>
-                <AudioFeatures
-                  tracks={topTracks}
-                  feature='energy'
-                  order='highest'
-                />
-              </div>
-            ) : (
-              <Loader />
-            )}
-            {topArtists ? (
-              <div style={{ flex: '0 0 33.3%' }}>
-                <h3>Chillest Song</h3>
-                <AudioFeatures tracks={topTracks} feature='energy' />
-              </div>
-            ) : (
-              <Loader />
-            )}
-          </div>
+          <Row>
+            <StatsSection>
+              <StatsTitle>Song Breakdown</StatsTitle>
+              <StatsBox>
+                {topArtists ? (
+                  <AudioFeatureContainer>
+                    <h3>Most Danceable</h3>
+                    <AudioFeatures
+                      tracks={topTracks}
+                      feature='danceability'
+                      order='highest'
+                    />
+                  </AudioFeatureContainer>
+                ) : (
+                  <Loader />
+                )}
+                {topArtists ? (
+                  <AudioFeatureContainer>
+                    <h3>Happiest</h3>
+                    <AudioFeatures
+                      tracks={topTracks}
+                      feature='valence'
+                      order='highest'
+                    />
+                  </AudioFeatureContainer>
+                ) : (
+                  <Loader />
+                )}
+                {topArtists ? (
+                  <AudioFeatureContainer>
+                    <h3>Saddest</h3>
+                    <AudioFeatures tracks={topTracks} feature='valence' />
+                  </AudioFeatureContainer>
+                ) : (
+                  <Loader />
+                )}
+                {topArtists ? (
+                  <AudioFeatureContainer>
+                    <h3>Longest</h3>
+                    <AudioFeatures
+                      tracks={topTracks}
+                      feature='duration_ms'
+                      order='highest'
+                    />
+                  </AudioFeatureContainer>
+                ) : (
+                  <Loader />
+                )}{' '}
+                {topArtists ? (
+                  <AudioFeatureContainer>
+                    <h3>Highest Energy</h3>
+                    <AudioFeatures
+                      tracks={topTracks}
+                      feature='energy'
+                      order='highest'
+                    />
+                  </AudioFeatureContainer>
+                ) : (
+                  <Loader />
+                )}
+                {topArtists ? (
+                  <AudioFeatureContainer>
+                    <h3>Chillest</h3>
+                    <AudioFeatures tracks={topTracks} feature='energy' />
+                  </AudioFeatureContainer>
+                ) : (
+                  <Loader />
+                )}
+              </StatsBox>
+            </StatsSection>
+          </Row>
         </>
       )}
     </>

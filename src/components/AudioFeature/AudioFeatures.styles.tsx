@@ -4,7 +4,8 @@ import theme from 'styles/theme';
 const { colors, fontSize, transitions, weights } = theme;
 
 export const FeatureContainer = styled.a`
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 0.75rem;
   border-radius: 5px;
   transition: background ${transitions.base};
@@ -25,6 +26,11 @@ export const Image = styled.img`
   object-fit: cover;
   opacity: 0.85;
   transition: opacity ${transitions.base};
+  margin-right: 0.75rem;
+`;
+
+export const TrackInfo = styled.div`
+  overflow: hidden;
 `;
 
 export const TrackName = styled.strong`
@@ -33,6 +39,11 @@ export const TrackName = styled.strong`
   font-weight: ${weights.bold};
   display: block;
   margin-bottom: 0.25rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  width: fit-content;
 `;
 
 export const TrackArtist = styled.span`

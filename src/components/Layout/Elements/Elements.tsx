@@ -15,6 +15,11 @@ const RowStyles = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(10rem, 100%));
   grid-gap: 2rem;
   justify-content: space-between;
+
+  &:not(:last-child) {
+    padding-bottom: 4rem;
+    border-bottom: thin solid ${colors.darkestGrey};
+  }
 `;
 
 const SectionStyles = styled.section``;

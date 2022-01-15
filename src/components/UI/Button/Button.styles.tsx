@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import theme from 'styles/theme';
-const { colors, weights, fontSize, transitions } = theme;
+const { colors, weights, fontSize, fonts, transitions } = theme;
 
 interface ButtonProps {
   icon?: string;
+  title?: string;
   modifier?: string;
 }
 
@@ -30,17 +31,44 @@ export const ButtonStyle = styled.button<ButtonProps>`
     `
     background: ${colors.darkestBlue};
     color: ${colors.lightGrey};
-    padding: 0;
+    padding: 0 1rem;
     width: 48px;
     height: 48px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       color: ${colors.white};
       background: ${colors.darkestBlue};
+      width: auto;
+      transform: scale(1);
+      padding: 0 1.25rem;
+
+      i:before {
+        content: '${props.title}';
+        display: block;
+        opacity: 1;
+        font-family: ${fonts.primary};
+        font-weight: ${weights.bolder};
+        font-size: ${fontSize.sm};
+        text-transform: uppercase;
+        letter-spacing: 1.5px;        
+        margin-right: 0.5rem;
+      }
     }
 
     i {
       margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:before {
+        opacity: 0;
+        transition: opacity ${transitions.base};
+      }
     }
   `}
 
