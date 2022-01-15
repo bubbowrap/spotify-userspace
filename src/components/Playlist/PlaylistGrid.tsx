@@ -1,14 +1,19 @@
-import { PlaylistContainer } from './PlaylistGrid.styles';
 import PlaylistItem from './PlaylistItem';
+import styled from 'styled-components';
+
+export const PlaylistContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 interface PlaylistParams {
   playlists: any[];
 }
 
-const PlaylistGrid: React.FC<PlaylistParams> = (props) => {
+const PlaylistGrid: React.FC<PlaylistParams> = ({ playlists }) => {
   return (
     <PlaylistContainer>
-      {props.playlists.map((playlist, i) => (
+      {playlists.map((playlist, i) => (
         <PlaylistItem playlist={playlist} key={i} />
       ))}
     </PlaylistContainer>

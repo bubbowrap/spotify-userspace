@@ -4,9 +4,10 @@ import {
   Image,
   ArtistName,
   ArtistFollowers,
-} from './SliderItem.styles';
+} from './ArtistItem.styles';
 
 interface ArtistProps {
+  imgSize?: string;
   artist: {
     external_urls: {
       spotify: string;
@@ -19,18 +20,22 @@ interface ArtistProps {
   };
 }
 
-const SliderItem: React.FC<ArtistProps> = (props) => {
+const SliderItem: React.FC<ArtistProps> = ({ artist, imgSize }) => {
   return (
     <ItemContainer>
       <ItemLink
-        href={props.artist.external_urls.spotify}
+        href={artist.external_urls.spotify}
         target='_blank'
         rel='noopener noreferrer'
       >
-        <Image src={props.artist.images[0].url} alt={props.artist.name} />
-        <ArtistName>{props.artist.name}</ArtistName>
+        <Image
+          src={artist.images[`${imgSize === 'large' ? 0 : 1}`].url}
+          alt={artist.name}
+          imgSize={imgSize}
+        />
+        <ArtistName>{artist.name}</ArtistName>
         <ArtistFollowers>
-          {props.artist.followers.total.toLocaleString()} Followers
+          {artist.followers.total.toLocaleString()} Followers
         </ArtistFollowers>
       </ItemLink>
     </ItemContainer>

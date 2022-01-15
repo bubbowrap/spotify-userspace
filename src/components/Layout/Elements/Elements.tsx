@@ -15,6 +15,11 @@ const RowStyles = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(10rem, 100%));
   grid-gap: 2rem;
   justify-content: space-between;
+
+  &:not(:last-child) {
+    padding-bottom: 4rem;
+    border-bottom: thin solid ${colors.darkestGrey};
+  }
 `;
 
 const SectionStyles = styled.section``;
@@ -36,18 +41,22 @@ const SectionHeaderStyles = styled.header`
   }
 `;
 
-export const Container = (props: { children: React.ReactNode }) => {
-  return <ContainerStyles>{props.children}</ContainerStyles>;
+interface ElementProps {
+  children?: React.ReactNode;
+}
+
+export const Container: React.FC<ElementProps> = ({ children }) => {
+  return <ContainerStyles>{children}</ContainerStyles>;
 };
 
-export const Row = (props: { children: React.ReactNode }) => {
-  return <RowStyles>{props.children}</RowStyles>;
+export const Row: React.FC<ElementProps> = ({ children }) => {
+  return <RowStyles>{children}</RowStyles>;
 };
 
-export const Section = (props: { children: React.ReactNode }) => {
-  return <SectionStyles>{props.children}</SectionStyles>;
+export const Section: React.FC<ElementProps> = ({ children }) => {
+  return <SectionStyles>{children}</SectionStyles>;
 };
 
-export const SectionHeader = (props: { children: React.ReactNode }) => {
-  return <SectionHeaderStyles>{props.children}</SectionHeaderStyles>;
+export const SectionHeader: React.FC<ElementProps> = ({ children }) => {
+  return <SectionHeaderStyles>{children}</SectionHeaderStyles>;
 };

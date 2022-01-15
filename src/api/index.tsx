@@ -67,6 +67,12 @@ export const getUserProfile = () =>
     headers: DEFAULT_HEADERS,
   });
 
+export const getCurrentlyPlaying = () =>
+  fetch(`${BASE_SPOTIFY_URL}/me/player/currently-playing`, {
+    method: 'GET',
+    headers: DEFAULT_HEADERS,
+  });
+
 export const getUserFollowing = () =>
   fetch(`${BASE_SPOTIFY_URL}/me/following?type=artist`, {
     method: 'GET',
@@ -93,6 +99,18 @@ export const getUserPlaylists = (limit?: number) =>
 
 export const getArtistsById = (ids: string) =>
   fetch(`${BASE_SPOTIFY_URL}/artists?ids=${ids}`, {
+    method: 'GET',
+    headers: DEFAULT_HEADERS,
+  });
+
+export const getTrackById = (id: string) =>
+  fetch(`${BASE_SPOTIFY_URL}/tracks/${id}`, {
+    method: 'GET',
+    headers: DEFAULT_HEADERS,
+  });
+
+export const getAudioFeatures = (ids: string) =>
+  fetch(`${BASE_SPOTIFY_URL}/audio-features?ids=${ids}`, {
     method: 'GET',
     headers: DEFAULT_HEADERS,
   });

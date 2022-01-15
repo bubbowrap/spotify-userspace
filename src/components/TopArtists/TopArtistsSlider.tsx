@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getArtistsById } from 'api';
-import SliderItem from './SliderItem';
+import ArtistItem from './ArtistItem';
 import Flickity from 'react-flickity-component';
 import 'assets/css/flickity.css';
 import styled from 'styled-components';
@@ -11,7 +11,6 @@ export const SliderContainer = styled.div`
 
 interface artistProps {
   artists: any[];
-  limit?: number;
 }
 
 const options = {
@@ -21,14 +20,13 @@ const options = {
   bgLazyLoad: true,
 };
 
-const TopArtistsSlider: React.FC<artistProps> = (props) => {
+const TopArtistsSlider: React.FC<artistProps> = ({ artists }) => {
   const [isError, setIsError] = useState(false);
 
   const [currArtists, setCurrArtists] = useState([]);
+  const ids = artists.map((artist: any) => artist.id).join('%2C');
 
   useEffect(() => {
-    const ids = props.artists.map((artist: any) => artist.id).join('%2C');
-
     const fetchArtists = async () => {
       try {
         const res = await getArtistsById(ids);
@@ -41,7 +39,7 @@ const TopArtistsSlider: React.FC<artistProps> = (props) => {
     };
 
     fetchArtists();
-  }, [props.artists]);
+  }, [ids]);
 
   return (
     <SliderContainer>
@@ -52,7 +50,7 @@ const TopArtistsSlider: React.FC<artistProps> = (props) => {
         disableImagesLoaded={false}
       >
         {currArtists.map((artist: any, i: number) => (
-          <SliderItem artist={artist} key={i} />
+          <ArtistItem artist={artist} imgSize='large' key={i} />
         ))}
       </Flickity>
     </SliderContainer>

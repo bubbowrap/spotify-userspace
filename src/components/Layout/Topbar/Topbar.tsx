@@ -17,12 +17,12 @@ interface BarProps {
   children?: React.ReactNode;
 }
 
-const Topbar: React.FC<BarProps> = (props) => {
+const Topbar: React.FC<BarProps> = ({ children }) => {
   const authCtx = useContext(AuthContext);
 
   return (
     <Bar>
-      <PageTitle>{props.children}</PageTitle>
+      <PageTitle>{children}</PageTitle>
       <Button
         modifier='icon'
         icon='logout'

@@ -23,17 +23,34 @@ ChartJS.register(
 );
 
 interface chartArr {
-  chartArray: any[];
+  data: any[];
 }
 
-export const TopGenreChart: React.FC<chartArr> = (props) => {
+export const TopGenreChart: React.FC<chartArr> = ({ data }) => {
+  // make array for top genres
+  const topGenresArray = () => {
+    const genreObject = data
+      ?.flatMap((artist: any) =>
+        artist.genres.flatMap((genre: string) => genre)
+      )
+      .reduce((prev: any, curr: any) => {
+        prev[curr] = (prev[curr] || 0) + 1;
+        return prev;
+      }, {});
+    let genreArray = [];
+    for (let genre in genreObject) {
+      genreArray.push([genre, genreObject[genre]]);
+    }
+    return genreArray.sort((a, b) => b[1] - a[1]).slice(0, 10);
+  };
+
   return (
     <Bar
       data={{
-        labels: props.chartArray.map((genre: any) => genre[0]),
+        labels: topGenresArray().map((genre: any) => genre[0]),
         datasets: [
           {
-            data: props.chartArray.map((genre: any) => genre[1]),
+            data: topGenresArray().map((genre: any) => genre[1]),
             backgroundColor: `${colors.green}`,
           },
         ],
@@ -72,21 +89,38 @@ export const TopGenreChart: React.FC<chartArr> = (props) => {
   );
 };
 
-export const TopDecadesChart: React.FC<chartArr> = (props) => {
+export const TopDecadesChart: React.FC<chartArr> = ({ data }) => {
+  // make array for top decades
+  const topDecadesArray = () => {
+    const yearObject = data
+      ?.flatMap((track: any) => track.album.release_date.slice(0, 4))
+      .map((year) => year.slice(0, 3))
+      .reduce((prev: any, curr: any) => {
+        prev[curr] = (prev[curr] || 0) + 1;
+        return prev;
+      }, {});
+    let yearArray = [];
+    for (let year in yearObject) {
+      yearArray.push([`${year}0s`, yearObject[year]]);
+    }
+
+    return yearArray.sort((a, b) => a[1] - b[1]);
+  };
+
   let pieColorsArray: any[] = [];
-  props.chartArray.forEach((decade, index) =>
+  data.forEach((decade, index) =>
     pieColorsArray.push(
-      `rgba(42, 184, 89, ${(index + 1) * (100 / props.chartArray.length)}%)`
+      `rgba(42, 184, 89, ${(index + 1) * (100 / topDecadesArray().length)}%)`
     )
   );
 
   return (
     <Doughnut
       data={{
-        labels: props.chartArray.map((year: any) => year[0]),
+        labels: topDecadesArray().map((year: any) => year[0]),
         datasets: [
           {
-            data: props.chartArray.map((year: any) => year[1] * 2),
+            data: topDecadesArray().map((year: any) => year[1] * 2),
             backgroundColor: pieColorsArray,
             borderWidth: 0,
           },
@@ -95,7 +129,13 @@ export const TopDecadesChart: React.FC<chartArr> = (props) => {
       options={{
         responsive: true,
         plugins: {
-          legend: {},
+          legend: {
+            labels: {
+              color: `${colors.lightGrey}`,
+              padding: 30,
+            },
+            position: 'bottom',
+          },
         },
       }}
     />

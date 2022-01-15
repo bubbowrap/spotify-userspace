@@ -18,19 +18,16 @@ interface Props {
   };
 }
 
-const PlaylistItem: React.FC<Props> = (props) => {
+const PlaylistItem: React.FC<Props> = ({ playlist }) => {
   return (
     <PlaylistBox
-      href={props.playlist.external_urls.spotify}
+      href={playlist.external_urls.spotify}
       target='_blank'
       rel='noopener noreferrer'
     >
-      <Image
-        src={props.playlist.images[0].url}
-        alt={`${props.playlist.name} Playlist`}
-      />
-      <PlaylistTitle>{props.playlist.name}</PlaylistTitle>
-      <PlaylistTotal>{props.playlist.tracks.total} Songs</PlaylistTotal>
+      <Image src={playlist.images[0].url} alt={`${playlist.name} Playlist`} />
+      <PlaylistTitle>{playlist.name}</PlaylistTitle>
+      <PlaylistTotal>{playlist.tracks.total} Songs</PlaylistTotal>
     </PlaylistBox>
   );
 };

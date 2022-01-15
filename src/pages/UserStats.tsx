@@ -1,9 +1,45 @@
 import { useEffect, useState } from 'react';
-import { Topbar, Row, Section } from 'components/Layout';
+import { Topbar, Row } from 'components/Layout';
 import { getUserTopArtists, getUserTopTracks } from 'api';
 import { TopGenreChart, TopDecadesChart } from 'components/Charts';
+import AudioFeatures from 'components/AudioFeatures/AudioFeatures';
 import { Loader } from 'components/UI';
 
+import styled from 'styled-components';
+
+const StatsSection = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > *:first-child {
+    margin-right: 2rem;
+  }
+`;
+
+const StatsTitle = styled.h2`
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1;
+  flex: 40%;
+`;
+
+const StatsBox = styled.div`
+  flex: 60%;
+`;
+
+const AudioFeatureContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > *:first-child {
+    margin-right: 0.75rem;
+    flex: 0 0 25%;
+  }
+
+  & > *:last-child {
+    flex-basis: 100%;
+  }
+`;
 const UserStats = () => {
   const [isError, setIsError] = useState(false);
 
@@ -30,42 +66,6 @@ const UserStats = () => {
     fetchData();
   }, []);
 
-  // make array for top genres
-  const topGenresArray = () => {
-    const genreObject = topArtists
-      ?.flatMap((artist: any) =>
-        artist.genres.flatMap((genre: string) => genre)
-      )
-      .reduce((prev: any, curr: any) => {
-        prev[curr] = (prev[curr] || 0) + 1;
-        return prev;
-      }, {});
-    let genreArray = [];
-    for (let genre in genreObject) {
-      genreArray.push([genre, genreObject[genre]]);
-    }
-    return genreArray.sort((a, b) => b[1] - a[1]).slice(0, 10);
-  };
-
-  // make array for top decades
-  const topDecadesArray = () => {
-    const yearObject = topTracks
-      ?.flatMap((track: any) => track.album.release_date.slice(0, 4))
-      .map((year) => year.slice(0, 3))
-      .reduce((prev: any, curr: any) => {
-        prev[curr] = (prev[curr] || 0) + 1;
-        return prev;
-      }, {});
-    let yearArray = [];
-    for (let year in yearObject) {
-      yearArray.push([`${year}0s`, yearObject[year]]);
-    }
-
-    return yearArray.sort((a, b) => a[1] - b[1]);
-  };
-
-  console.log(topDecadesArray());
-
   return (
     <>
       <Topbar>Stats for Nerds</Topbar>
@@ -74,66 +74,90 @@ const UserStats = () => {
       ) : (
         <>
           <Row>
-            <Section>
+            <StatsSection>
               {topArtists ? (
                 <>
-                  <h2 style={{ textAlign: 'center' }}>Your Top Ten Genres</h2>
-                  <TopGenreChart chartArray={topGenresArray()} />
+                  <StatsTitle>Your Top 10 Genres</StatsTitle>
+                  <StatsBox style={{ flexBasis: '75%' }}>
+                    <TopGenreChart data={topArtists} />
+                  </StatsBox>
                 </>
               ) : (
                 <Loader />
               )}
-            </Section>
+            </StatsSection>
           </Row>
           <Row>
-            <Section>
+            <StatsSection>
               {topTracks ? (
                 <>
-                  <h2 style={{ textAlign: 'center' }}>Your Top Decades</h2>
-                  <TopDecadesChart chartArray={topDecadesArray()} />
+                  <StatsBox style={{ flexBasis: '40%' }}>
+                    <TopDecadesChart data={topTracks} />
+                  </StatsBox>
+                  <StatsTitle>Your Favorite Decades</StatsTitle>
                 </>
               ) : (
                 <Loader />
               )}
-            </Section>
-            <Section>
-              <Row>
-                <Section>
-                  {topTracks ? (
-                    <>
-                      <h2 style={{ textAlign: 'center' }}>
-                        Average Song Length
-                      </h2>
-                      5 minutes
-                    </>
-                  ) : (
-                    <Loader />
-                  )}
-                </Section>
-              </Row>
-              <Row>
-                <Section>
-                  {topTracks ? (
-                    <>
-                      <h2 style={{ textAlign: 'center' }}>
-                        You Typically Listen In:
-                      </h2>
-                      The morning
-                    </>
-                  ) : (
-                    <Loader />
-                  )}
-                </Section>
-              </Row>
-            </Section>
+            </StatsSection>
           </Row>
           <Row>
-            <div>Your most danceable song:</div>
-            <div>Your happiest song:</div>
-            <div>Your saddest song:</div>
-            <div>Your chillest song:</div>
-            <div>Your most popular song:</div>
-            <div>Your least popular song:</div>
+            <StatsSection>
+              {topArtists ? (
+                <>
+                  <StatsTitle>Song Breakdown</StatsTitle>
+                  <StatsBox>
+                    <AudioFeatureContainer>
+                      <h3>Most Danceable</h3>
+                      <AudioFeatures
+                        tracks={topTracks}
+                        feature='danceability'
+                        order='highest'
+                      />
+                    </AudioFeatureContainer>
+
+                    <AudioFeatureContainer>
+                      <h3>Happiest</h3>
+                      <AudioFeatures
+                        tracks={topTracks}
+                        feature='valence'
+                        order='highest'
+                      />
+                    </AudioFeatureContainer>
+
+                    <AudioFeatureContainer>
+                      <h3>Saddest</h3>
+                      <AudioFeatures tracks={topTracks} feature='valence' />
+                    </AudioFeatureContainer>
+
+                    <AudioFeatureContainer>
+                      <h3>Longest</h3>
+                      <AudioFeatures
+                        tracks={topTracks}
+                        feature='duration_ms'
+                        order='highest'
+                      />
+                    </AudioFeatureContainer>
+
+                    <AudioFeatureContainer>
+                      <h3>Highest Energy</h3>
+                      <AudioFeatures
+                        tracks={topTracks}
+                        feature='energy'
+                        order='highest'
+                      />
+                    </AudioFeatureContainer>
+
+                    <AudioFeatureContainer>
+                      <h3>Chillest</h3>
+                      <AudioFeatures tracks={topTracks} feature='energy' />
+                    </AudioFeatureContainer>
+                  </StatsBox>
+                </>
+              ) : (
+                <Loader />
+              )}
+            </StatsSection>
           </Row>
         </>
       )}
