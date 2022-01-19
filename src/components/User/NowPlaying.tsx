@@ -4,6 +4,7 @@ import useInterval from 'hooks/useInterval';
 import {
   NowPlayingContainer,
   NowPlayingHeader,
+  NowPlayingContent,
   AlbumImage,
   TrackName,
   ArtistLink,
@@ -55,15 +56,15 @@ const NowPlaying = () => {
   }, 12500);
 
   return (
-    <div style={{ margin: '1.5rem' }}>
-      {isError && `Something went wrong. -- ${isError}`}
+    <NowPlayingContainer>
+      {isError && ``}
       {playingTrack && (
         <>
           <NowPlayingHeader>
             <EqualizerIcon />
             <h4>Currently Playing</h4>
           </NowPlayingHeader>
-          <NowPlayingContainer>
+          <NowPlayingContent>
             <a
               href={playingTrack.album.external_urls.spotify}
               target='_blank'
@@ -95,10 +96,10 @@ const NowPlaying = () => {
                 ))
                 .reduce((prev, curr) => [prev, ', ', curr])}
             </div>
-          </NowPlayingContainer>
+          </NowPlayingContent>
         </>
       )}
-    </div>
+    </NowPlayingContainer>
   );
 };
 
