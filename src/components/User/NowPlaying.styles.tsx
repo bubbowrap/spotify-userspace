@@ -3,6 +3,10 @@ import theme from 'styles/theme';
 const { colors, fontSize, weights, transitions } = theme;
 
 export const NowPlayingContainer = styled.div`
+  margin: 1.5rem;
+`;
+
+export const NowPlayingContent = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -26,6 +30,10 @@ export const AlbumImage = styled.img`
   border-radius: 5px;
   opacity: 0.85;
   transition: opacity ${transitions.base};
+
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const TrackName = styled.a`
