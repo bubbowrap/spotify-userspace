@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getArtistsById } from 'api';
 import ArtistItem from './ArtistItem';
 import Flickity from 'react-flickity-component';
+import 'flickity-imagesloaded';
 import 'assets/css/flickity.css';
 import styled from 'styled-components';
 
@@ -17,7 +18,7 @@ const options = {
   freeScroll: true,
   contain: true,
   pageDots: false,
-  bgLazyLoad: true,
+  imagesLoaded: true,
 };
 
 const TopArtistsSlider: React.FC<artistProps> = ({ artists }) => {
