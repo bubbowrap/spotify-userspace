@@ -35,7 +35,7 @@ exports.handler = async function (event, context) {
         grant_type: 'authorization_code',
       },
       headers: {
-        Authorization: `Basic ${new Buffer(
+        Authorization: `Basic ${Buffer.from(
           `${CLIENT_ID}:${CLIENT_SECRET}`
         ).toString('base64')}`,
       },

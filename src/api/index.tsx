@@ -47,6 +47,8 @@ export const getToken = () => {
     localStorage.setItem('spotify_access_token', access_token);
     localStorage.setItem('spotify_refresh_token', refresh_token);
     localStorage.setItem('spotify_token_time', Date.now().toString());
+    //redirects to homepage on first login/set
+    window.location.href = '/';
     return access_token;
   }
 
