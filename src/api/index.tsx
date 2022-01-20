@@ -11,17 +11,18 @@ const setAccessToken = (token: string) => {
 };
 
 const refreshToken = async () => {
-  try {
-    const res = await fetch(
-      `http://localhost:8888/refresh_token?refresh_token=${getSpotifyRefreshToken()}`
-    );
-    const { access_token } = await res.json();
-    console.log(access_token);
-    setAccessToken(access_token);
-    window.location.reload();
-    return;
-  } catch (e) {
-    console.error(e);
+  if (localStorage.getItem('spotify_refresh_token')) {
+    try {
+      const res = await fetch(
+        `/.netlify/functions/refresh_token?refresh_token=${getSpotifyRefreshToken()}`
+      );
+      const { access_token } = await res.json();
+      setAccessToken(access_token);
+      window.location.reload();
+      return;
+    } catch (e) {
+      console.error(e);
+    }
   }
 };
 

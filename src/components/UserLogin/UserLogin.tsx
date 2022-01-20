@@ -5,7 +5,7 @@ import Noise from 'components/Layout/Background/Noise';
 const UserLogin = () => {
   const handleClick = () => {
     // has to redirect this way for the server stuff to work
-    window.location.href = '/login';
+    window.location.href = '/.netlify/functions/login';
   };
   return (
     <>

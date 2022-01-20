@@ -14,7 +14,7 @@ export const ButtonStyle = styled.button<ButtonProps>`
   text-transform: uppercase;
   padding: 1.25rem 3rem;
   background-color: ${colors.green};
-  font-weight: ${weights.bold};
+  font-weight: ${weights.bolder};
   font-size: ${fontSize.sm};
   letter-spacing: 1.5px;
   transition: all ${transitions.base};
