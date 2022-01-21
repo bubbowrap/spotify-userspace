@@ -25,6 +25,7 @@ const TopArtistsSlider: React.FC<artistProps> = ({ artists }) => {
   const [isError, setIsError] = useState(false);
 
   const [currArtists, setCurrArtists] = useState([]);
+
   const ids = artists.map((artist: any) => artist.id).join('%2C');
 
   useEffect(() => {
@@ -38,22 +39,28 @@ const TopArtistsSlider: React.FC<artistProps> = ({ artists }) => {
         setIsError(true);
       }
     };
-
-    fetchArtists();
+    if (ids !== '' || ids.length > 0) fetchArtists();
   }, [ids]);
 
   return (
     <SliderContainer>
       {isError && <p>Something went wrong.</p>}
-      <Flickity
-        reloadOnUpdate={true}
-        options={options}
-        disableImagesLoaded={false}
-      >
-        {currArtists.map((artist: any, i: number) => (
-          <ArtistItem artist={artist} imgSize='large' key={i} />
-        ))}
-      </Flickity>
+      {currArtists.length === 0 ? (
+        <p>
+          Seems you may not have any top artists. Try finding some artists you
+          love.
+        </p>
+      ) : (
+        <Flickity
+          reloadOnUpdate={true}
+          options={options}
+          disableImagesLoaded={false}
+        >
+          {currArtists.map((artist: any, i: number) => (
+            <ArtistItem artist={artist} imgSize='large' key={i} />
+          ))}
+        </Flickity>
+      )}
     </SliderContainer>
   );
 };

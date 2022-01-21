@@ -24,7 +24,7 @@ const stateKey = 'spotify_auth_state';
 
 // your application requests authorization
 const scope =
-  'user-read-private user-read-email user-follow-read user-library-read user-top-read user-read-recently-played user-read-currently-playing playlist-read-collaborative playlist-read-private';
+  'user-follow-read user-top-read user-read-recently-played user-read-currently-playing playlist-read-collaborative playlist-read-private';
 
 exports.handler = async function (event, context) {
   const state = generateRandomString(16);

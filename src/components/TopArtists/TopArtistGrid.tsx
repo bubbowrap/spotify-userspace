@@ -24,9 +24,16 @@ interface artistsProps {
 const TopArtistsGrid: React.FC<artistsProps> = ({ artists }) => {
   return (
     <TopArtistsContainer>
-      {artists.map((artist: any, i: number) => (
-        <ArtistItem artist={artist} key={i} />
-      ))}
+      {artists.length === 0 ? (
+        <p>
+          Seems you may not have any top artists. Try finding some artists you
+          love.
+        </p>
+      ) : (
+        artists.map((artist: any, i: number) => (
+          <ArtistItem artist={artist} key={i} />
+        ))
+      )}
     </TopArtistsContainer>
   );
 };

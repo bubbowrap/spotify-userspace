@@ -72,7 +72,7 @@ const Homepage = () => {
         <Row>
           <Section>
             <SectionHeader>
-              <h2>Your Top PlayLists</h2>
+              <h2>Your Top Playlists</h2>
               <Link to='/playlists'>See More</Link>
             </SectionHeader>
             {playlists ? (

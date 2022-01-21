@@ -75,7 +75,12 @@ const UserStats = () => {
         <>
           <Row>
             <StatsSection>
-              {topArtists ? (
+              {topArtists?.length === 0 ? (
+                <p>
+                  Seems you may not have any top artists. Try finding some
+                  artists you love.
+                </p>
+              ) : topArtists ? (
                 <>
                   <StatsTitle>Your Top 10 Genres</StatsTitle>
                   <StatsBox style={{ flexBasis: '75%' }}>
@@ -89,7 +94,12 @@ const UserStats = () => {
           </Row>
           <Row>
             <StatsSection>
-              {topTracks ? (
+              {topTracks?.length === 0 ? (
+                <p>
+                  Seems you may not have any top tracks. Try finding some music
+                  you love.
+                </p>
+              ) : topTracks ? (
                 <>
                   <StatsBox style={{ flexBasis: '40%' }}>
                     <TopDecadesChart data={topTracks} />
@@ -103,7 +113,12 @@ const UserStats = () => {
           </Row>
           <Row>
             <StatsSection>
-              {topArtists ? (
+              {topArtists?.length === 0 ? (
+                <p>
+                  Seems you may not have any top artists. Try finding some
+                  artists you love.
+                </p>
+              ) : topArtists ? (
                 <>
                   <StatsTitle>Song Breakdown</StatsTitle>
                   <StatsBox>
