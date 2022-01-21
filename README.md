@@ -1,6 +1,6 @@
 # Spotify User Space
 
-Project to try out the Spotify API. It shows a user's Spotify stats in a bunch of neat ways. Hand designed and styled, no CSS frameworks here!
+Project to try out the Spotify API. It shows a user's Spotify stats in a bunch of neat ways.
 
 Stuff used:
 
@@ -9,49 +9,23 @@ Stuff used:
 - Styled Components
 - Chart.js
 - Spotify API
+- Serverless Functions
 - Netlify
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+A lot of interesting things to figure out with this project. Hand designed and styled from the ground up solely because I felt like I didn't need a whole heavy css framework for something so relatively simple, y'know? Plus with design, if you don't use it you lose it (that's probably not actually true) and saw it as a neat opportunity to brush off the skills.
+
 ## Available Scripts
 
-In the project directory, you can run:
+I initially built a node/express server for authentification, but ended up needing to rewrite it all into serverless functions/the Netlify CLI. To test this out locally, you'll first need to [install the Netlify CLI](https://docs.netlify.com/cli/get-started/). You'll then need to set up a [Spotify Developer account](https://developer.spotify.com/) and grab the client id/client secret and add those into a .env file. You'll have to whitelist your dev space in Spotify too (I set mine a  http://localhost:8888/callback and http://localhost:8888/.netlify/functions/callback). For obvious reasons I can't help you out with that, but after that in the project directory you can run:
 
-### `npm start`
+### `netlify dev`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:8888](http://localhost:8888) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Alternatively you can navigate to the project directory root and run my old server with `node server` and then navigate to [http://localhost:8888](http://localhost:8888). It should do some fancy redirect stuff that'll let you use the web app on [http://localhost:3000](http://localhost:3000) but frankly that was the old me and old Jeremy somehow wanted to do it in the most complicated way possible. Lemme know what you think though!
