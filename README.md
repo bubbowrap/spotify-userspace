@@ -1,8 +1,6 @@
 # Spotify User Space
 
-Project to try out the Spotify API. It shows a user's Spotify stats in a bunch of neat ways.
-
-Stuff used:
+Project to try out the Spotify API. It shows a user's Spotify stats in a bunch of neat ways. Stuff used:
 
 - React
 - Typescript
@@ -11,6 +9,8 @@ Stuff used:
 - Spotify API
 - Serverless Functions
 - Netlify
+
+ Technically you can see the app at [https://spotify-userspace.netlify.app](https://spotify-userspace.netlify.app), but Spotify has this whole development mode thing where I have to whitelist/add user e-mails MANUALLY for them to be able to get access, so...I guess [e-mail me]((mailto:bubbowrap@gmail.com?subject=[GitHub]%20Spotify%20Userspace%20Access) and I'll give it to you. We'll see if they let me become a real app and I can delete this entire paragraph.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
