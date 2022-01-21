@@ -47,7 +47,7 @@ const User = () => {
     <UserContainer>
       {user ? (
         <>
-          <Image src={user.images[0].url} />
+          {user.images[0] && <Image src={user.images[0].url} />}
           <UserTextContainer>
             <Username>{user.display_name}</Username>
             <UserDetails>

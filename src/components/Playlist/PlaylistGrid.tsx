@@ -13,9 +13,13 @@ interface PlaylistParams {
 const PlaylistGrid: React.FC<PlaylistParams> = ({ playlists }) => {
   return (
     <PlaylistContainer>
-      {playlists.map((playlist, i) => (
-        <PlaylistItem playlist={playlist} key={i} />
-      ))}
+      {playlists.length === 0 ? (
+        <p>Seems you haven't created any playlist. Try making one now.</p>
+      ) : (
+        playlists.map((playlist, i) => (
+          <PlaylistItem playlist={playlist} key={i} />
+        ))
+      )}
     </PlaylistContainer>
   );
 };
