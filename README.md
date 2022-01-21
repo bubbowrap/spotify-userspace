@@ -18,7 +18,11 @@ A lot of interesting things to figure out with this project. Hand designed and s
 
 ## Available Scripts
 
-I initially built a node/express server for authentification, but ended up needing to rewrite it all into serverless functions/the Netlify CLI. To test this out locally, you'll first need to [install the Netlify CLI](https://docs.netlify.com/cli/get-started/). You'll then need to set up a [Spotify Developer account](https://developer.spotify.com/) and grab the client id/client secret and add those into a .env file. You'll have to whitelist your dev space in Spotify too (I set mine a  http://localhost:8888/callback and http://localhost:8888/.netlify/functions/callback). For obvious reasons I can't help you out with that, but after that in the project directory you can run:
+I initially built a node/express server for authentification, but ended up needing to rewrite it all into serverless functions/the Netlify CLI. To test this out locally, you'll first need to [install the Netlify CLI](https://docs.netlify.com/cli/get-started/).
+
+You'll then need to set up a [Spotify Developer account](https://developer.spotify.com/) and grab the client id/client secret and add those into a .env file. You'll have to whitelist your dev space in Spotify too (I set mine a  http://localhost:8888/callback and http://localhost:8888/.netlify/functions/callback).
+
+For obvious reasons I can't help you out with that, but after that in the project directory you can run:
 
 ### `netlify dev`
 
