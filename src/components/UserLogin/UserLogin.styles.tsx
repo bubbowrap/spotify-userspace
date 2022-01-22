@@ -6,6 +6,7 @@ export const UserLoginBox = styled.div`
   align-self: center;
   margin: 0 auto;
   text-align: center;
+  padding: 0 1rem;
 `;
 
 export const Title = styled.h1`
