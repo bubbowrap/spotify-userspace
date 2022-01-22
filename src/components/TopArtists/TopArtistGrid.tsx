@@ -1,5 +1,6 @@
 import ArtistItem from './ArtistItem';
 import styled from 'styled-components';
+import Attribution from 'components/Attribution/Attribution';
 
 const TopArtistsContainer = styled.div`
   display: flex;
@@ -23,18 +24,21 @@ interface artistsProps {
 
 const TopArtistsGrid: React.FC<artistsProps> = ({ artists }) => {
   return (
-    <TopArtistsContainer>
-      {artists.length === 0 ? (
-        <p>
-          Seems you may not have any top artists. Try finding some artists you
-          love.
-        </p>
-      ) : (
-        artists.map((artist: any, i: number) => (
-          <ArtistItem artist={artist} key={i} />
-        ))
-      )}
-    </TopArtistsContainer>
+    <>
+      <TopArtistsContainer>
+        {artists.length === 0 ? (
+          <p>
+            Seems you may not have any top artists. Try finding some artists you
+            love.
+          </p>
+        ) : (
+          artists.map((artist: any, i: number) => (
+            <ArtistItem artist={artist} key={i} />
+          ))
+        )}
+      </TopArtistsContainer>
+      <Attribution />
+    </>
   );
 };
 

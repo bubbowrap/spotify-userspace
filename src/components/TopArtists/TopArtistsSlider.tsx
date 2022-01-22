@@ -5,6 +5,7 @@ import Flickity from 'react-flickity-component';
 import 'flickity-imagesloaded';
 import 'assets/css/flickity.css';
 import styled from 'styled-components';
+import Attribution from 'components/Attribution/Attribution';
 
 export const SliderContainer = styled.div`
   margin-right: -2rem;
@@ -51,15 +52,18 @@ const TopArtistsSlider: React.FC<artistProps> = ({ artists }) => {
           love.
         </p>
       ) : (
-        <Flickity
-          reloadOnUpdate={true}
-          options={options}
-          disableImagesLoaded={false}
-        >
-          {currArtists.map((artist: any, i: number) => (
-            <ArtistItem artist={artist} imgSize='large' key={i} />
-          ))}
-        </Flickity>
+        <>
+          <Flickity
+            reloadOnUpdate={true}
+            options={options}
+            disableImagesLoaded={false}
+          >
+            {currArtists.map((artist: any, i: number) => (
+              <ArtistItem artist={artist} imgSize='large' key={i} />
+            ))}
+          </Flickity>
+          <Attribution position='start' />
+        </>
       )}
     </SliderContainer>
   );

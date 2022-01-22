@@ -4,6 +4,7 @@ import { getUserTopArtists, getUserTopTracks } from 'api';
 import { TopGenreChart, TopDecadesChart } from 'components/Charts';
 import AudioFeatures from 'components/AudioFeatures/AudioFeatures';
 import { Loader } from 'components/UI';
+import Attribution from 'components/Attribution/Attribution';
 
 import styled from 'styled-components';
 
@@ -167,6 +168,7 @@ const UserStats = () => {
                       <h3>Chillest</h3>
                       <AudioFeatures tracks={topTracks} feature='energy' />
                     </AudioFeatureContainer>
+                    <Attribution />
                   </StatsBox>
                 </>
               ) : (

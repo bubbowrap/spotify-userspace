@@ -38,7 +38,6 @@ export const AlbumImage = styled.img`
   height: 55px;
   object-fit: cover;
   object-position: 50% 50%;
-  border-radius: 5px;
   opacity: 0.85;
   transition: opacity ${transitions.base};
 `;

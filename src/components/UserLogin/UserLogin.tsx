@@ -1,4 +1,4 @@
-import { UserLoginBox, Title } from './UserLogin.styles';
+import { UserLoginBox, Title, Tagline } from './UserLogin.styles';
 import { Button } from 'components/UI';
 import Noise from 'components/Layout/Background/Noise';
 
@@ -10,7 +10,8 @@ const UserLogin = () => {
   return (
     <>
       <UserLoginBox>
-        <Title>Spotify UserSpace</Title>
+        <Title>Statify</Title>
+        <Tagline>View your top artists, tracks, genres, and more.</Tagline>
         <Button onClick={handleClick}>Connect to Spotify</Button>
       </UserLoginBox>
       <Noise />
