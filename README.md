@@ -1,4 +1,4 @@
-# Statify Dashboard
+# Statlify Dashboard
 
 Project to try out the Spotify API and help users see where their true interests lie. It shows a user's Spotify stats in a bunch of neat ways. Stuff used:
 
@@ -10,7 +10,7 @@ Project to try out the Spotify API and help users see where their true interests
 - Serverless Functions
 - Netlify
 
-Technically you can see the app at [https://statify-dashboard.netlify.app](https://statify-dashboard.netlify.app), but Spotify has this whole development mode thing where I have to whitelist/add user e-mails MANUALLY for them to be able to get access, so...I guess [e-mail me](mailto:bubbowrap@gmail.com?subject=Statify%20Dashboard%20Access) and I'll give it to you. We'll see if they let me become a real app and I can delete this entire paragraph.
+Technically you can see the app at [https://statlify.netlify.app](https://statlify.netlify.app), but Spotify has this whole development mode thing where I have to whitelist/add user e-mails MANUALLY for them to be able to get access, so...I guess [e-mail me](mailto:bubbowrap@gmail.com?subject=Statlify%20Dashboard%20Access) and I'll give it to you. We'll see if they let me become a real app and I can delete this entire paragraph.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

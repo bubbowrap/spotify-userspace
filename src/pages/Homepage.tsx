@@ -46,7 +46,7 @@ const Homepage = () => {
     <>
       {isError && <p>Something went wrong.</p>}
       <>
-        <Topbar>Statify Overview</Topbar>
+        <Topbar>Statlify Overview</Topbar>
         <Row>
           <Section>
             <SectionHeader>
