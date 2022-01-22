@@ -28,6 +28,13 @@ export const theme = {
     xl: '48px',
     xxl: '72px',
   },
+  breakpoints: {
+    xs: '(min-width: 320px)',
+    sm: '(min-width: 480px)',
+    md: '(min-width: 768px)',
+    lg: '(min-width: 1024px)',
+    xl: '(min-width: 1200px)',
+  },
   transitions: {
     base: '0.2s ease',
   },

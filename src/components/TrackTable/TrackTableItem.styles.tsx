@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import theme from 'styles/theme';
-const { colors, fontSize, weights, transitions } = theme;
+const { colors, fontSize, weights, breakpoints, transitions } = theme;
 
 interface TableParams {
   rank?: Boolean;
@@ -9,7 +9,7 @@ interface TableParams {
 export const TrackTableRow = styled.div<TableParams>`
   display: grid;
   grid-template-columns:
-    ${(props) => props.rank && 'minmax(0, 1.5rem)'} min-content 40% 1fr
+    ${(props) => props.rank && 'minmax(0, 1.5rem)'} min-content minmax(0, 70%)
     min-content;
   column-gap: 1.5rem;
   grid-auto-flow: column dense;
@@ -18,6 +18,12 @@ export const TrackTableRow = styled.div<TableParams>`
   border-radius: 5px;
   transition: all ${transitions.base};
   color: ${colors.lightGrey};
+
+  @media screen and ${breakpoints.md} {
+    grid-template-columns:
+      ${(props) => props.rank && 'minmax(0, 1.5rem)'} min-content 40% 1fr
+      min-content;
+  }
 
   &:hover,
   &:focus {
@@ -71,20 +77,24 @@ export const ArtistLink = styled.a`
 `;
 
 export const AlbumLink = styled.a`
-  display: block;
-  font-size: ${fontSize.sm};
-  transition: all ${transitions.base};
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 100%;
-  width: fit-content;
-  padding-left: 10%;
+  display: none;
 
-  &:hover,
-  &:focus {
-    color: ${colors.white};
-    text-decoration: underline;
+  @media screen and ${breakpoints.md} {
+    display: block;
+    font-size: ${fontSize.sm};
+    transition: all ${transitions.base};
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
+    width: fit-content;
+    padding-left: 10%;
+
+    &:hover,
+    &:focus {
+      color: ${colors.white};
+      text-decoration: underline;
+    }
   }
 `;
 

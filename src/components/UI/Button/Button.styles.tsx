@@ -38,7 +38,9 @@ export const ButtonStyle = styled.button<ButtonProps>`
     display: flex;
     align-items: center;
     justify-content: center;
-
+    position: absolute;
+    right: 0;
+    
     &:hover {
       color: ${colors.white};
       background: ${colors.darkestBlue};

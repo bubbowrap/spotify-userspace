@@ -1,15 +1,18 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { token } from 'api';
 
-const AuthContext = createContext({
+const StateContext = createContext({
   loggedIn: false,
   loading: true,
+  sidebarActive: false,
   logout: () => {},
+  toggleSidebar: () => {},
 });
 
-export const AuthContextProvider = (props: { children: React.ReactNode }) => {
+export const StateContextProvider = (props: { children: React.ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSidebarActive, setIsSidebarActive] = useState(false);
 
   useEffect(() => {
     if (token) {
@@ -26,17 +29,22 @@ export const AuthContextProvider = (props: { children: React.ReactNode }) => {
     console.log('Logging Out...');
   };
 
+  const toggleSidebarHandler = () => {
+    setIsSidebarActive((prevValue) => !prevValue);
+  };
   return (
-    <AuthContext.Provider
+    <StateContext.Provider
       value={{
         loggedIn: isLoggedIn,
+        sidebarActive: isSidebarActive,
         loading: isLoading,
         logout: logoutHandler,
+        toggleSidebar: toggleSidebarHandler,
       }}
     >
       {props.children}
-    </AuthContext.Provider>
+    </StateContext.Provider>
   );
 };
 
-export default AuthContext;
+export default StateContext;

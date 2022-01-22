@@ -6,9 +6,15 @@ import 'flickity-imagesloaded';
 import 'assets/css/flickity.css';
 import styled from 'styled-components';
 import Attribution from 'components/Attribution/Attribution';
+import theme from 'styles/theme';
+const { breakpoints } = theme;
 
 export const SliderContainer = styled.div`
-  margin-right: -2rem;
+  margin-right: -0.5rem;
+
+  @media screen and ${breakpoints.md} {
+    margin-right: -2rem;
+  }
 `;
 
 interface artistProps {

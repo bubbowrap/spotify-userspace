@@ -7,16 +7,16 @@ import TopArtists from 'pages/TopArtists';
 import TopTracks from 'pages/TopTracks';
 import UserStats from 'pages/UserStats';
 import UserLogin from 'components/UserLogin/UserLogin';
-import AuthContext from 'context/auth-context';
+import StateContext from 'context/state-context';
 import { Loader } from 'components/UI';
 
 function App() {
-  const authCtx = useContext(AuthContext);
+  const stateCtx = useContext(StateContext);
 
   return (
     <Container>
-      {authCtx.loading && <Loader />}
-      {!authCtx.loading && authCtx.loggedIn && (
+      {stateCtx.loading && <Loader />}
+      {!stateCtx.loading && stateCtx.loggedIn && (
         <>
           <Sidebar />
           <Main>
@@ -31,7 +31,7 @@ function App() {
           </Main>
         </>
       )}
-      {!authCtx.loading && !authCtx.loggedIn && <UserLogin />}
+      {!stateCtx.loading && !stateCtx.loggedIn && <UserLogin />}
     </Container>
   );
 }

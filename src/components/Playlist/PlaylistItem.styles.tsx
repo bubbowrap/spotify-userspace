@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-const { colors, weights, fontSize, transitions } = theme;
+const { colors, weights, fontSize, breakpoints, transitions } = theme;
 
 export const PlaylistBox = styled.a`
   padding: 0.75rem;
   border-radius: 5px;
-  flex: 0 0 25%;
+  flex: 0 0 calc(100% / 2);
   min-width: 150px;
   transition: background ${transitions.base};
 
@@ -16,6 +16,10 @@ export const PlaylistBox = styled.a`
     img {
       opacity: 1;
     }
+  }
+
+  @media screen and ${breakpoints.md} {
+    flex: 0 0 25%;
   }
 `;
 

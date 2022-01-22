@@ -7,25 +7,53 @@ import { Loader } from 'components/UI';
 import Attribution from 'components/Attribution/Attribution';
 
 import styled from 'styled-components';
+import theme from 'styles/theme';
+const { breakpoints } = theme;
 
 const StatsSection = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
 
-  & > *:first-child {
-    margin-right: 2rem;
+  @media screen and ${breakpoints.lg} {
+    flex-direction: row;
+
+    & > *:first-child {
+      margin-right: 2rem;
+    }
   }
 `;
 
 const StatsTitle = styled.h2`
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 600;
   line-height: 1;
-  flex: 40%;
+  text-align: center;
+  width: 100%;
+
+  @media screen and ${breakpoints.lg} {
+    font-size: 48px;
+    text-align: left;
+    flex: 40%;
+  }
 `;
 
 const StatsBox = styled.div`
-  flex: 60%;
+  order: 1;
+  width: 100%;
+
+  @media screen and ${breakpoints.lg} {
+    order: 0;
+    flex: 60%;
+
+    &.genres {
+      flex: 75%;
+    }
+
+    &.decades {
+      flex: 40%;
+    }
+  }
 `;
 
 const AudioFeatureContainer = styled.div`
@@ -84,7 +112,7 @@ const UserStats = () => {
               ) : topArtists ? (
                 <>
                   <StatsTitle>Your Top 10 Genres</StatsTitle>
-                  <StatsBox style={{ flexBasis: '75%' }}>
+                  <StatsBox className={'genres'}>
                     <TopGenreChart data={topArtists} />
                   </StatsBox>
                 </>
@@ -102,7 +130,7 @@ const UserStats = () => {
                 </p>
               ) : topTracks ? (
                 <>
-                  <StatsBox style={{ flexBasis: '40%' }}>
+                  <StatsBox className={'decades'}>
                     <TopDecadesChart data={topTracks} />
                   </StatsBox>
                   <StatsTitle>Your Favorite Decades</StatsTitle>
