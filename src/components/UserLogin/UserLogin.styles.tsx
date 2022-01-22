@@ -9,8 +9,12 @@ export const UserLoginBox = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: ${fontSize.xl};
+  font-size: ${fontSize.xxl};
   font-weight: ${weights.bold};
   line-height: 1.25;
   margin: 0 0 1.25rem 0;
+`;
+
+export const Tagline = styled.p`
+  margin-bottom: 2rem;
 `;

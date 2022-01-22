@@ -27,7 +27,6 @@ export const AlbumImage = styled.img`
   margin-right: 1rem;
   object-fit: cover;
   object-position: 50% 50%;
-  border-radius: 5px;
   opacity: 0.85;
   transition: opacity ${transitions.base};
 
@@ -39,7 +38,7 @@ export const AlbumImage = styled.img`
 export const TrackName = styled.a`
   display: block;
   color: ${colors.white};
-  font-size: ${fontSize.sm};
+  font-size: ${fontSize.xs};
   font-weight: ${weights.bold};
   margin-bottom: 0.25rem;
   transition: all ${transitions.base};
@@ -57,7 +56,7 @@ export const TrackName = styled.a`
 `;
 
 export const ArtistLink = styled.a`
-  font-size: ${fontSize.sm};
+  font-size: ${fontSize.xs};
   transition: all ${transitions.base};
 
   &:hover,

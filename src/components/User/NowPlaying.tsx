@@ -1,5 +1,6 @@
 import { getCurrentlyPlaying } from 'api';
 import { useCallback, useEffect, useState } from 'react';
+import Attribution from 'components/Attribution/Attribution';
 import useInterval from 'hooks/useInterval';
 import {
   NowPlayingContainer,
@@ -97,6 +98,7 @@ const NowPlaying = () => {
                 .reduce((prev, curr) => [prev, ', ', curr])}
             </div>
           </NowPlayingContent>
+          <Attribution position='start' />
         </>
       )}
     </NowPlayingContainer>

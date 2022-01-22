@@ -27,7 +27,6 @@ export const Image = styled.img<ArtistProps>`
   object-fit: cover;
   object-position: 50% 25%;
   aspect-ratio: 5/3;
-  border-radius: 10px;
   margin-bottom: 1rem;
   max-height: 150px;
   height: auto;

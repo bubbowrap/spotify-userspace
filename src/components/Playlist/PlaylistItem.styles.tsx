@@ -21,7 +21,6 @@ export const PlaylistBox = styled.a`
 
 export const Image = styled.img`
   max-width: 100%;
-  border-radius: 5px;
   margin-bottom: 0.5rem;
   object-fit: cover;
   opacity: 0.85;

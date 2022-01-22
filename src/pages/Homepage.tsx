@@ -46,7 +46,7 @@ const Homepage = () => {
     <>
       {isError && <p>Something went wrong.</p>}
       <>
-        <Topbar>Spotify Overview</Topbar>
+        <Topbar>Statify Overview</Topbar>
         <Row>
           <Section>
             <SectionHeader>

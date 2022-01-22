@@ -1,5 +1,6 @@
 import PlaylistItem from './PlaylistItem';
 import styled from 'styled-components';
+import Attribution from 'components/Attribution/Attribution';
 
 export const PlaylistContainer = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ const PlaylistGrid: React.FC<PlaylistParams> = ({ playlists }) => {
           <PlaylistItem playlist={playlist} key={i} />
         ))
       )}
+      <Attribution />
     </PlaylistContainer>
   );
 };

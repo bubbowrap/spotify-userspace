@@ -26,6 +26,7 @@ export const theme = {
     md: '20px',
     lg: '32px',
     xl: '48px',
+    xxl: '72px',
   },
   transitions: {
     base: '0.2s ease',

@@ -1,6 +1,6 @@
-# Spotify User Space
+# Statify Dashboard
 
-Project to try out the Spotify API. It shows a user's Spotify stats in a bunch of neat ways. Stuff used:
+Project to try out the Spotify API and help users see where their true interests lie. It shows a user's Spotify stats in a bunch of neat ways. Stuff used:
 
 - React
 - Typescript
@@ -10,7 +10,7 @@ Project to try out the Spotify API. It shows a user's Spotify stats in a bunch o
 - Serverless Functions
 - Netlify
 
- Technically you can see the app at [https://spotify-userspace.netlify.app](https://spotify-userspace.netlify.app), but Spotify has this whole development mode thing where I have to whitelist/add user e-mails MANUALLY for them to be able to get access, so...I guess [e-mail me](mailto:bubbowrap@gmail.com?subject=Spotify%20Userspace%20Access) and I'll give it to you. We'll see if they let me become a real app and I can delete this entire paragraph.
+Technically you can see the app at [https://statify-dashboard.netlify.app](https://statify-dashboard.netlify.app), but Spotify has this whole development mode thing where I have to whitelist/add user e-mails MANUALLY for them to be able to get access, so...I guess [e-mail me](mailto:bubbowrap@gmail.com?subject=Statify%20Dashboard%20Access) and I'll give it to you. We'll see if they let me become a real app and I can delete this entire paragraph.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -20,7 +20,7 @@ A lot of interesting things to figure out with this project. Hand designed and s
 
 I initially built a node/express server for authentification, but ended up needing to rewrite it all into serverless functions/the Netlify CLI. To test this out locally, you'll first need to [install the Netlify CLI](https://docs.netlify.com/cli/get-started/).
 
-You'll then need to set up a [Spotify Developer account](https://developer.spotify.com/) and grab the client id/client secret and add those into a .env file. You'll have to whitelist your dev space in Spotify too (I set mine a  http://localhost:8888/callback and http://localhost:8888/.netlify/functions/callback).
+You'll then need to set up a [Spotify Developer account](https://developer.spotify.com/) and grab the client id/client secret and add those into a .env file. You'll have to whitelist your dev space in Spotify too (I set mine a http://localhost:8888/callback and http://localhost:8888/.netlify/functions/callback).
 
 For obvious reasons I can't help you out with that, but after that in the project directory you can run:
 
