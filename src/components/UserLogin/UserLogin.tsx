@@ -10,7 +10,7 @@ const UserLogin = () => {
   return (
     <>
       <UserLoginBox>
-        <Title>Statify</Title>
+        <Title>Statlify</Title>
         <Tagline>View your top artists, tracks, genres, and more.</Tagline>
         <Button onClick={handleClick}>Connect to Spotify</Button>
       </UserLoginBox>
