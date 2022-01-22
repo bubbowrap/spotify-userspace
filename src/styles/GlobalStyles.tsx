@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import theme from './theme';
 
-const { colors, fonts, weights, transitions } = theme;
+const { colors, fonts, weights, transitions, breakpoints } = theme;
 
 const GlobalStyles = createGlobalStyle`
     html {
@@ -29,6 +29,24 @@ const GlobalStyles = createGlobalStyle`
     h3 {
       color: ${colors.white};
       font-weight: ${weights.bold};
+    }
+
+
+
+    h1 {
+      font-size: 1.5em;
+
+      @media screen and ${breakpoints.md} {
+        font-size: 2em;
+      }
+    }
+
+    h2 {
+      font-size: 1.25em;
+
+      @media screen and ${breakpoints.md} {
+        font-size: 1.5em;
+      }
     }
 
     a {

@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import GlobalStyles from 'styles/GlobalStyles';
 import { BrowserRouter } from 'react-router-dom';
 import App from 'App';
-import { AuthContextProvider } from 'context/auth-context';
+import { StateContextProvider } from 'context/state-context';
 //import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <BrowserRouter>
-    <AuthContextProvider>
+    <StateContextProvider>
       <GlobalStyles />
       <App />
-    </AuthContextProvider>
+    </StateContextProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );

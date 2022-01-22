@@ -1,6 +1,8 @@
 import ArtistItem from './ArtistItem';
 import styled from 'styled-components';
 import Attribution from 'components/Attribution/Attribution';
+import theme from 'styles/theme';
+const { breakpoints } = theme;
 
 const TopArtistsContainer = styled.div`
   display: flex;
@@ -8,8 +10,14 @@ const TopArtistsContainer = styled.div`
 
   & > div {
     padding: 0 1rem;
-    flex: 0 0 calc(100% / 3);
+    flex: 0 0 calc(100% / 2);
+    max-width: calc(100% / 2);
     margin-bottom: 2rem;
+
+    @media screen and ${breakpoints.lg} {
+      flex: 0 0 calc(100% / 3);
+      max-width: calc(100% / 3);
+    }
 
     a {
       margin-right: 0;
