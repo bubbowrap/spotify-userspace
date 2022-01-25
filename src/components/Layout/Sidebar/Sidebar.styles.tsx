@@ -30,6 +30,10 @@ const SidebarStyle = styled.div<SidebarProps>`
     `
     margin-left: 0;
     box-shadow: 5px 0 30px 10px rgb(2, 6, 23, 0.3);
+
+    @media screen and ${breakpoints.md} {
+      box-shadow: none;
+    }
   `}
 
   @media screen and ${breakpoints.md} {
