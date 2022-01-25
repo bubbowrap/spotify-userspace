@@ -19,6 +19,11 @@ const TopArtistsContainer = styled.div`
       max-width: calc(100% / 3);
     }
 
+    @media screen and ${breakpoints.xxl} {
+      flex: 0 0 calc(100% / 4);
+      max-width: calc(100% / 4);
+    }
+
     a {
       margin-right: 0;
     }

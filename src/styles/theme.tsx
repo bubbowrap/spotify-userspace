@@ -34,6 +34,7 @@ export const theme = {
     md: '(min-width: 768px)',
     lg: '(min-width: 1024px)',
     xl: '(min-width: 1200px)',
+    xxl: '(min-width: 1400px)',
   },
   transitions: {
     base: '0.2s ease',
