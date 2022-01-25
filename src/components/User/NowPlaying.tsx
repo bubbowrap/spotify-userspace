@@ -7,6 +7,7 @@ import {
   NowPlayingHeader,
   NowPlayingContent,
   AlbumImage,
+  TrackInfo,
   TrackName,
   ArtistLink,
 } from './NowPlaying.styles';
@@ -76,7 +77,7 @@ const NowPlaying = () => {
                 alt={`${playingTrack.album.name} Album Artwork`}
               />
             </a>
-            <div style={{ overflow: 'hidden' }}>
+            <TrackInfo>
               <TrackName
                 href={playingTrack.external_urls.spotify}
                 target='_blank'
@@ -96,7 +97,7 @@ const NowPlaying = () => {
                   </ArtistLink>
                 ))
                 .reduce((prev, curr) => [prev, ', ', curr])}
-            </div>
+            </TrackInfo>
           </NowPlayingContent>
           <Attribution position='start' />
         </>

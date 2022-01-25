@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallback from 'components/UI/ErrorFallback/ErrorFallback';
 import { getUserPlaylists } from 'api';
 import PlaylistGrid from 'components/Playlist/PlaylistGrid';
 import { Topbar, Row, Section } from 'components/Layout';
@@ -29,13 +31,13 @@ const Playlists = () => {
       {isError ? (
         <p>Something went wrong.</p>
       ) : (
-        <>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Row>
             <Section>
               {playlists ? <PlaylistGrid playlists={playlists} /> : <Loader />}
             </Section>
           </Row>
-        </>
+        </ErrorBoundary>
       )}
     </>
   );
