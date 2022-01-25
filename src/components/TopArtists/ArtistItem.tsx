@@ -29,7 +29,7 @@ const SliderItem: React.FC<ArtistProps> = ({ artist, imgSize }) => {
         rel='noopener noreferrer'
       >
         <Image
-          src={artist.images[`${imgSize === 'large' ? 6 : 1}`].url}
+          src={artist.images[`${imgSize === 'large' ? 0 : 1}`].url}
           alt={artist.name}
           imgSize={imgSize}
         />
