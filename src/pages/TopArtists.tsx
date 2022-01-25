@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallback from 'components/UI/ErrorFallback/ErrorFallback';
 import { Topbar, Row, Section } from 'components/Layout';
 import { getUserTopArtists } from 'api';
 import TopArtistsGrid from 'components/TopArtists/TopArtistGrid';
@@ -30,7 +32,7 @@ const TopArtists = () => {
       {isError ? (
         <p>Something went wrong.</p>
       ) : (
-        <>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Row>
             <Section>
               {topArtists ? (
@@ -40,7 +42,7 @@ const TopArtists = () => {
               )}
             </Section>
           </Row>
-        </>
+        </ErrorBoundary>
       )}
     </>
   );

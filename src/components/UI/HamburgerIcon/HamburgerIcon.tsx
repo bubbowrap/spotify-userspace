@@ -32,6 +32,10 @@ const HamburgerIco = styled.div<HamburgerProps>`
   ${(props) =>
     props.active &&
     `
+    span {
+      transition: all ${transitions.base};
+    }
+    
   span:nth-child(1) {
     -webkit-transform: translateY(13px);
     -ms-transform: translateY(13px);

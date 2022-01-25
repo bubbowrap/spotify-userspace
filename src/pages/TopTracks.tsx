@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallback from 'components/UI/ErrorFallback/ErrorFallback';
 import { getUserTopTracks } from 'api';
-
 import { Topbar, Section, Row } from 'components/Layout';
 import { Loader } from 'components/UI';
 
@@ -30,13 +31,13 @@ const TopTracks = () => {
       {isError ? (
         <p>Something went wrong.</p>
       ) : (
-        <>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Row>
             <Section>
               {topTracks ? <TrackTable tracks={topTracks} rank /> : <Loader />}
             </Section>
           </Row>
-        </>
+        </ErrorBoundary>
       )}
     </>
   );

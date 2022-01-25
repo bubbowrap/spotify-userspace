@@ -35,6 +35,11 @@ export const AlbumImage = styled.img`
   }
 `;
 
+export const TrackInfo = styled.div`
+  overflow: hidden;
+  color: ${colors.lightGrey};
+`;
+
 export const TrackName = styled.a`
   display: block;
   color: ${colors.white};

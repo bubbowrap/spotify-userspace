@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import StateContext from 'context/state-context';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallback from 'components/UI/ErrorFallback/ErrorFallback';
 import User from 'components/User/User';
 import NowPlaying from 'components/User/NowPlaying';
 import Navigation from 'components/Navigation/Navigation';
@@ -14,9 +16,11 @@ const Sidebar: React.FC<SidebarProps> = ({ active }) => {
 
   return (
     <SidebarStyle active={stateCtx.sidebarActive}>
-      <User />
-      <Navigation />
-      <NowPlaying />
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <User />
+        <Navigation />
+        <NowPlaying />
+      </ErrorBoundary>
     </SidebarStyle>
   );
 };

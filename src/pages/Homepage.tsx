@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallback from 'components/UI/ErrorFallback/ErrorFallback';
 import { Link } from 'react-router-dom';
 import { getUserTopTracks, getUserTopArtists, getUserPlaylists } from 'api';
 import TrackTable from 'components/TrackTable/TrackTable';
@@ -47,41 +49,43 @@ const Homepage = () => {
       {isError && <p>Something went wrong.</p>}
       <>
         <Topbar>Statlify Overview</Topbar>
-        <Row>
-          <Section>
-            <SectionHeader>
-              <h2>Your Top Artists</h2>
-              <Link to='/top-artists'>See More</Link>
-            </SectionHeader>
-            {topArtists ? (
-              <TopArtistsSlider artists={topArtists.items} />
-            ) : (
-              <Loader />
-            )}
-          </Section>
-        </Row>
-        <Row>
-          <Section>
-            <SectionHeader>
-              <h2>Your Top Tracks</h2>
-              <Link to='/top-tracks'>See More</Link>
-            </SectionHeader>
-            {topTracks ? <TrackTable tracks={topTracks.items} /> : <Loader />}
-          </Section>
-        </Row>
-        <Row>
-          <Section>
-            <SectionHeader>
-              <h2>Your Top Playlists</h2>
-              <Link to='/playlists'>See More</Link>
-            </SectionHeader>
-            {playlists ? (
-              <PlaylistGrid playlists={playlists.items} />
-            ) : (
-              <Loader />
-            )}
-          </Section>
-        </Row>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Row>
+            <Section>
+              <SectionHeader>
+                <h2>Your Top Artists</h2>
+                <Link to='/top-artists'>See More</Link>
+              </SectionHeader>
+              {topArtists ? (
+                <TopArtistsSlider artists={topArtists.items} />
+              ) : (
+                <Loader />
+              )}
+            </Section>
+          </Row>
+          <Row>
+            <Section>
+              <SectionHeader>
+                <h2>Your Top Tracks</h2>
+                <Link to='/top-tracks'>See More</Link>
+              </SectionHeader>
+              {topTracks ? <TrackTable tracks={topTracks.items} /> : <Loader />}
+            </Section>
+          </Row>
+          <Row>
+            <Section>
+              <SectionHeader>
+                <h2>Your Top Playlists</h2>
+                <Link to='/playlists'>See More</Link>
+              </SectionHeader>
+              {playlists ? (
+                <PlaylistGrid playlists={playlists.items} />
+              ) : (
+                <Loader />
+              )}
+            </Section>
+          </Row>
+        </ErrorBoundary>
       </>
     </>
   );

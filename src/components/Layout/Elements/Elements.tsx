@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-const { colors, fontSize } = theme;
+const { colors, fontSize, breakpoints } = theme;
 
 const ContainerStyles = styled.div`
   min-height: 100vh;
@@ -17,8 +17,12 @@ const RowStyles = styled.div`
   justify-content: space-between;
 
   &:not(:last-child) {
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
     border-bottom: thin solid ${colors.darkestGrey};
+
+    @media screen and ${breakpoints.md} {
+      padding-bottom: 4rem;
+    }
   }
 `;
 

@@ -7,6 +7,7 @@ const StateContext = createContext({
   sidebarActive: false,
   logout: () => {},
   toggleSidebar: () => {},
+  closeSidebar: () => {},
 });
 
 export const StateContextProvider = (props: { children: React.ReactNode }) => {
@@ -32,6 +33,11 @@ export const StateContextProvider = (props: { children: React.ReactNode }) => {
   const toggleSidebarHandler = () => {
     setIsSidebarActive((prevValue) => !prevValue);
   };
+
+  const closeSidebarHandler = () => {
+    setIsSidebarActive((prevValue) => prevValue && !prevValue);
+  };
+
   return (
     <StateContext.Provider
       value={{
@@ -40,6 +46,7 @@ export const StateContextProvider = (props: { children: React.ReactNode }) => {
         loading: isLoading,
         logout: logoutHandler,
         toggleSidebar: toggleSidebarHandler,
+        closeSidebar: closeSidebarHandler,
       }}
     >
       {props.children}

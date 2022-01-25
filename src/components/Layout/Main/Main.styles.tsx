@@ -4,13 +4,14 @@ const { breakpoints } = theme;
 
 const Styled = styled.main`
   display: grid;
-  grid-row-gap: 2.5rem;
+  grid-row-gap: 1rem;
   padding: 5rem 1rem 2rem;
   width: 100%;
   align-content: start;
 
   @media screen and ${breakpoints.md} {
     padding: 2rem;
+    grid-row-gap: 2.5rem;
   }
 `;
 
