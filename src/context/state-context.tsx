@@ -27,7 +27,7 @@ export const StateContextProvider = (props: { children: React.ReactNode }) => {
     localStorage.removeItem('spotify_access_token');
     localStorage.removeItem('spotify_refresh_token');
     setIsLoggedIn(false);
-    console.log('Logging Out...');
+    window.location.href = '/';
   };
 
   const toggleSidebarHandler = () => {
