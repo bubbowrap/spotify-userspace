@@ -6,7 +6,7 @@ const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
 exports.handler = async function (event, context) {
   // requesting access token from refresh token
   let refresh_token = event.queryStringParameters.refresh_token;
-  console.log('refreshing token');
+  console.log('grabbing token');
   const authOptions = {
     method: 'post',
     url: 'https://accounts.spotify.com/api/token',
